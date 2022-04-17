@@ -1,10 +1,19 @@
 {
   "resources": [
+    {"id":{"name":"obj_enemy_gun","path":"objects/obj_enemy_gun/obj_enemy_gun.yy",},"order":4,},
+    {"id":{"name":"spr_gun_articulation","path":"sprites/spr_gun_articulation/spr_gun_articulation.yy",},"order":1,},
+    {"id":{"name":"obj_player_bullet","path":"objects/obj_player_bullet/obj_player_bullet.yy",},"order":6,},
     {"id":{"name":"spr_wall","path":"sprites/spr_wall/spr_wall.yy",},"order":1,},
+    {"id":{"name":"StartVariables","path":"scripts/StartVariables/StartVariables.yy",},"order":1,},
     {"id":{"name":"obj_manager","path":"objects/obj_manager/obj_manager.yy",},"order":3,},
     {"id":{"name":"PlayerMovement","path":"scripts/PlayerMovement/PlayerMovement.yy",},"order":0,},
+    {"id":{"name":"obj_player_gun","path":"objects/obj_player_gun/obj_player_gun.yy",},"order":5,},
     {"id":{"name":"obj_wall","path":"objects/obj_wall/obj_wall.yy",},"order":1,},
+    {"id":{"name":"spr_gun_weapon","path":"sprites/spr_gun_weapon/spr_gun_weapon.yy",},"order":2,},
+    {"id":{"name":"spr_player_gun","path":"sprites/spr_player_gun/spr_player_gun.yy",},"order":4,},
     {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},"order":0,},
+    {"id":{"name":"spr_gun_support","path":"sprites/spr_gun_support/spr_gun_support.yy",},"order":0,},
+    {"id":{"name":"spr_player_bullet","path":"sprites/spr_player_bullet/spr_player_bullet.yy",},"order":5,},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":0,},
     {"id":{"name":"obj_plataform","path":"objects/obj_plataform/obj_plataform.yy",},"order":2,},
     {"id":{"name":"spr_plataform","path":"sprites/spr_plataform/spr_plataform.yy",},"order":2,},
@@ -45,6 +54,7 @@
     {"folderPath":"folders/Animation Curves.yy","order":12,"resourceVersion":"1.0","name":"Animation Curves","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Notes.yy","order":13,"resourceVersion":"1.0","name":"Notes","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Extensions.yy","order":14,"resourceVersion":"1.0","name":"Extensions","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/Gun.yy","order":3,"resourceVersion":"1.0","name":"Gun","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},

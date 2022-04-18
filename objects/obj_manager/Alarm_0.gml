@@ -4,14 +4,14 @@ switch(global.current_state){
 	// Starts STARTUP phase
 	global.current_challenge++;
 	global.current_state = "STARTUP";
-	global.time = room_speed;
+	global.time = room_speed/2;
 	PlataformBuild();
-	RoundSetup(global.current_round,global.challenges);
 	break;
 	case "STARTUP":
 	// Starts CHALLENGE phase
 	global.current_state = "CHALLENGE";
 	global.time = room_speed*8;
+	RoundSetup(global.current_round,global.challenges);
 	break;
 	case "CHALLENGE":
 	// Starts END phase
@@ -33,6 +33,6 @@ switch(global.current_state){
 	global.clock = true;
 	global.challenges = [1,2,3,4,5,6];
 	}
-	global.time = room_speed*2;
+	global.time = room_speed;
 	break;
 }

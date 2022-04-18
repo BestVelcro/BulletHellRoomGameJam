@@ -2,7 +2,7 @@ if(sniper_angle > 90) and (sniper_angle < 270) sniper_yscale = -1; else sniper_y
 
 if(instance_exists(obj_player)) player_direction = point_direction(x,y-sprite_height,obj_player.x,obj_player.y);
 
-if(!lock) and (abs(angle_difference(player_direction,sniper_angle)) > 5) and (!get_out) sniper_angle += sign(angle_difference(player_direction,sniper_angle))*2;
+if(!lock) and (abs(angle_difference(player_direction,sniper_angle)) > 1) and (!get_out) sniper_angle += sign(angle_difference(player_direction,sniper_angle))*2;
 
 if(!get_out) y_offset = lerp(0,y_offset,0.9);
 
@@ -31,5 +31,5 @@ if(can_shoot) and (!get_out) and (abs(angle_difference(player_direction,sniper_a
 	bullet.sprite_index = spr_bullet_sniper;
 	bullet.direction = sniper_angle;
 	bullet.speed = 15;
-	bullet.image_angle = bullet.direction;
+	bullet.image_angle = sniper_angle;
 }

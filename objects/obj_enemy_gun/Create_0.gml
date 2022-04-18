@@ -1,32 +1,49 @@
 x = room_width/2;
 y = room_height/2;
 hit = 0;
-var number_of_guns_on_wall = global.gun_number_size/2;
-var distance_between_guns = room_height/number_of_guns_on_wall;
 gun_side = 0;
 cannon_angle = 0;
 startup = true;
 x_startup_offset_support = sprite_width;
-x_startup_offset_cannon = sprite_get_width(spr_gun_weapon)*2;
-if(global.gun_number_current_size > 0){
-if(global.gun_number_size/2 < global.gun_number_current_size){
-	gun_side = 1;
-	x = sprite_get_width(obj_wall);
-	var current_guns = global.gun_number_current_size-(global.gun_number_size/2)
-	y = (distance_between_guns/2)+(distance_between_guns * ((global.gun_number_size/2)-current_guns));
-	global.gun_number_current_size--;
-}else{
-	gun_side = -1;
-	cannon_angle = 180;
-	image_xscale = -1;
-	x = room_width-sprite_get_width(spr_wall);
-	y = (distance_between_guns/2)+(distance_between_guns * ((global.gun_number_size/2)-global.gun_number_current_size));
-	global.gun_number_current_size--;
-}
-if(instance_number(obj_enemy_gun) < global.gun_number_size){
-	instance_create_layer(x,y,"Guns",obj_enemy_gun);	
-}
-}
-
+random_gun = choose(spr_gun_weapon,spr_gun_minigun,spr_gun_rpg);
+sprite_index = random_gun;
+image_speed = 0;
+x_startup_offset_cannon = sprite_get_width(random_gun)*2;
+default_cannon_x = x_startup_offset_cannon;
+mask_index = spr_gun_support;
 aim_target = 0;
 aim_current_direction = cannon_angle;
+
+get_out = false;
+
+can_shoot = true;
+cooldown = room_speed;
+projectile_speed = 10;
+projectile_offset = [0,0];
+cannon_speed = 1;
+bullet_sprite = spr_bullet_pistol;
+can_home = false;
+bullet_limit = 9999;
+bullets_fired = 0;
+switch(random_gun){
+	case spr_gun_weapon:
+	cooldown = room_speed;
+	projectile_speed = 6;
+	bullet_sprite = spr_bullet_pistol;
+	break;
+	case spr_gun_minigun:
+	cooldown = room_speed/8;
+	projectile_speed = 8;
+	projectile_offset = [-3,3];
+	cannon_speed = 0.5;
+	bullet_sprite = spr_bullet_small;
+	break;
+	case spr_gun_rpg:
+	cooldown = room_speed*4;
+	projectile_speed = 2;
+	cannon_speed = 0.3;
+	bullet_sprite = spr_bullet_rpg;
+	can_home = true;
+	bullet_limit = 3;
+	break;
+}

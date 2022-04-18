@@ -15,6 +15,9 @@ switch(global.current_state){
 	break;
 	case "CHALLENGE":
 	// Starts END phase
+	with(all){
+		if(variable_instance_exists(id, "get_out"))	get_out = true;
+	}
 	if(instance_exists(obj_plataform)) instance_destroy(obj_plataform);
 	global.current_state = "END";
 	global.time = room_speed;

@@ -33,22 +33,25 @@ switch(current_round){
 	case 2:
 	switch(choosen_challenge){
 		case 1:
-		SummonGuns(14);
+		SummonGuns(4);
+		instance_create_layer(room_width/4,room_height-(sprite_get_height(spr_wall)),"Guns",obj_ground_gun);
 		break;
 		case 2:
-		SummonGuns(16);
+		SummonGuns(2);
 		break;
 		case 3:
-		SummonGuns(18);
+		SummonGuns(8);
 		break;
 		case 4:
-		SummonGuns(20);
+		SummonGuns(10);
+		instance_create_layer(room_width/2+room_width/4,room_height-(sprite_get_height(spr_wall)),"Guns",obj_ground_gun);
+		instance_create_layer(room_width/4,room_height-(sprite_get_height(spr_wall)),"Guns",obj_ground_gun);
 		break;
 		case 5:
-		SummonGuns(22);
+		SummonGuns(6);
 		break;
 		case 6:
-		SummonGuns(24);
+		SummonGuns(12);
 		break;
 	}
 	break;
@@ -174,6 +177,9 @@ repeat(global.gun_number_size){
 			global.gun_number_current_size--;
 		}
 	}	
+	choosen_gun = choose(spr_gun_rpg,spr_gun_minigun,spr_gun_weapon,spr_gun_laser);
+	laser_endpoint = choose(45,315,25,340,300,0,70);
+	event_user(0);
 	}
 }
 }

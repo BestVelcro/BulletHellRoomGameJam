@@ -58,7 +58,16 @@ if(onPlataform != noone) and (!can_fall) and (vs_speed > 0){
 }
 y += vs_speed; 
 
+if(horizontal_speed != 0) and (!lock){
+	sprite_index = spr_player_walking;
+}else if(hs_speed < hs_max_speed){
+	sprite_index = spr_player_slowing;
+	if(hs_speed < 1) sprite_index = spr_player_stop;
+}
 
+
+if(vs_speed < 0) sprite_index = spr_player_up;
+if(vs_speed > 0) sprite_index = spr_player_down;
 
 
 

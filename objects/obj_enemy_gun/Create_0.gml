@@ -37,6 +37,7 @@ switch(random_gun){
 	projectile_offset = [-3,3];
 	cannon_speed = 0.5;
 	bullet_sprite = spr_bullet_small;
+	bullet_limit = 20;
 	break;
 	case spr_gun_rpg:
 	cooldown = room_speed*4;

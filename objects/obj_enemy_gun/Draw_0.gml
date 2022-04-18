@@ -5,5 +5,6 @@ if(instance_exists(obj_player)){
 	draw_sprite_ext(random_gun,image_index,x+cannon_x+(x_startup_offset_cannon*(image_xscale*-1)),y+cannon_y,abs(image_xscale),image_yscale,player_dir,c_white,1);
 	draw_sprite_ext(spr_gun_support,0,x+(x_startup_offset_support*(image_xscale*-1)),y,image_xscale,image_yscale,0,c_white,1);
 	/////////////////////////////
-	draw_sprite_ext(spr_gun_support,1,x,y,image_xscale,image_yscale,0,c_white,hit);
+	draw_sprite_ext(spr_gun_support,1,x+(x_startup_offset_support*(image_xscale*-1)),y,image_xscale,image_yscale,0,c_white,hit);
+	draw_text(x+10,y+10,string(angle_difference(aim_target,aim_current_direction)));
 }

@@ -13,6 +13,7 @@ switch(current_round){
 		break;
 		case 2:
 		SummonGuns(2);
+		instance_create_layer(room_width/4,room_height-(sprite_get_height(spr_wall)),"Guns",obj_ground_gun);
 		break;
 		case 3:
 		SummonGuns(8);

@@ -45,7 +45,7 @@ if(onWall != noone){
 
 var onPlataform = collision_rectangle(bbox_left+1,bbox_bottom,bbox_right-1,bbox_bottom+vs_speed,obj_plataform,false,false);
 if(onPlataform != noone) and (!can_fall) and (vs_speed > 0){
-	if(onPlataform.visible){
+	if(onPlataform.image_index == onPlataform.image_number-1) and (onPlataform.visible){
 	var clipping = instance_place(x,y,obj_plataform);
 	if(clipping != noone){
 		if(onPlataform != clipping){

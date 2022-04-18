@@ -18,7 +18,7 @@ switch(global.current_state){
 	with(all){
 		if(variable_instance_exists(id, "get_out"))	get_out = true;
 	}
-	if(instance_exists(obj_plataform)) instance_destroy(obj_plataform);
+	if(instance_exists(obj_plataform)) obj_plataform.closes = true;;
 	global.current_state = "END";
 	global.time = room_speed;
 	break;

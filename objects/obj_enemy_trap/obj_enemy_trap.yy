@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_player_stop",
-    "path": "sprites/spr_player_stop/spr_player_stop.yy",
+    "name": "spr_landmine",
+    "path": "sprites/spr_landmine/spr_landmine.yy",
   },
   "solid": false,
   "visible": true,
@@ -29,11 +29,11 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Player",
-    "path": "folders/Objects/Player.yy",
+    "name": "Traps",
+    "path": "folders/Objects/Traps.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_player",
+  "name": "obj_enemy_trap",
   "tags": [],
   "resourceType": "GMObject",
 }

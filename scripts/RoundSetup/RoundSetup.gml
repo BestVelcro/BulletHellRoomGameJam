@@ -168,7 +168,6 @@ repeat(global.gun_number_size){
 		if(global.gun_number_size/2 < global.gun_number_current_size){
 			gun_side = 1;
 			x = sprite_get_width(spr_wall);
-			show_debug_message(string(x));
 			var current_guns = global.gun_number_current_size-(global.gun_number_size/2)
 			y = (distance_between_guns/2)+(distance_between_guns * ((global.gun_number_size/2)-current_guns));
 			global.gun_number_current_size--;

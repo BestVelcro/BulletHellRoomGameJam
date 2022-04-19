@@ -1,5 +1,6 @@
 {
   "resources": [
+    {"id":{"name":"spr_landmine","path":"sprites/spr_landmine/spr_landmine.yy",},"order":7,},
     {"id":{"name":"spr_bullet_rpg","path":"sprites/spr_bullet_rpg/spr_bullet_rpg.yy",},"order":1,},
     {"id":{"name":"obj_enemy_gun","path":"objects/obj_enemy_gun/obj_enemy_gun.yy",},"order":0,},
     {"id":{"name":"spr_gun_sniper_support","path":"sprites/spr_gun_sniper_support/spr_gun_sniper_support.yy",},"order":5,},
@@ -27,6 +28,7 @@
     {"id":{"name":"spr_bullet_laser","path":"sprites/spr_bullet_laser/spr_bullet_laser.yy",},"order":4,},
     {"id":{"name":"obj_wall","path":"objects/obj_wall/obj_wall.yy",},"order":2,},
     {"id":{"name":"spr_gun_weapon","path":"sprites/spr_gun_weapon/spr_gun_weapon.yy",},"order":1,},
+    {"id":{"name":"obj_particle","path":"objects/obj_particle/obj_particle.yy",},"order":6,},
     {"id":{"name":"spr_player_stop","path":"sprites/spr_player_stop/spr_player_stop.yy",},"order":3,},
     {"id":{"name":"spr_player_gun","path":"sprites/spr_player_gun/spr_player_gun.yy",},"order":4,},
     {"id":{"name":"RoundSetup","path":"scripts/RoundSetup/RoundSetup.yy",},"order":5,},
@@ -34,6 +36,8 @@
     {"id":{"name":"spr_gun_minigun","path":"sprites/spr_gun_minigun/spr_gun_minigun.yy",},"order":3,},
     {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},"order":0,},
     {"id":{"name":"spr_gun_support","path":"sprites/spr_gun_support/spr_gun_support.yy",},"order":0,},
+    {"id":{"name":"obj_enemy_trap","path":"objects/obj_enemy_trap/obj_enemy_trap.yy",},"order":5,},
+    {"id":{"name":"spr_landmine_hitbox","path":"sprites/spr_landmine_hitbox/spr_landmine_hitbox.yy",},"order":8,},
     {"id":{"name":"spr_player_bullet","path":"sprites/spr_player_bullet/spr_player_bullet.yy",},"order":6,},
     {"id":{"name":"StartVariables","path":"scripts/StartVariables/StartVariables.yy",},"order":4,},
     {"id":{"name":"spr_buttom_starts","path":"sprites/spr_buttom_starts/spr_buttom_starts.yy",},"order":6,},

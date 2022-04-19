@@ -7,6 +7,8 @@
     {"id":{"name":"PlataformBuild","path":"scripts/PlataformBuild/PlataformBuild.yy",},"order":3,},
     {"id":{"name":"obj_sensor","path":"objects/obj_sensor/obj_sensor.yy",},"order":10,},
     {"id":{"name":"obj_player_bullet","path":"objects/obj_player_bullet/obj_player_bullet.yy",},"order":6,},
+    {"id":{"name":"spr_player_crouch","path":"sprites/spr_player_crouch/spr_player_crouch.yy",},"order":7,},
+    {"id":{"name":"obj_enemy_gun_roof","path":"objects/obj_enemy_gun_roof/obj_enemy_gun_roof.yy",},"order":11,},
     {"id":{"name":"obj_buttom","path":"objects/obj_buttom/obj_buttom.yy",},"order":7,},
     {"id":{"name":"spr_wall","path":"sprites/spr_wall/spr_wall.yy",},"order":1,},
     {"id":{"name":"spr_player_slowing","path":"sprites/spr_player_slowing/spr_player_slowing.yy",},"order":2,},

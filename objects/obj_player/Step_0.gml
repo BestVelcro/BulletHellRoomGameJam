@@ -1,5 +1,5 @@
 var horizontal_speed = keyboard_check(vk_right)-keyboard_check(vk_left);
-var jump = keyboard_check(vk_up);
+var jump = keyboard_check(vk_space);
 var key_down = keyboard_check(vk_down);
 var lock = keyboard_check(ord("C"));
 jump = jump*(!lock);
@@ -64,7 +64,6 @@ if(horizontal_speed != 0) and (!lock){
 	sprite_index = spr_player_slowing;
 	if(hs_speed < 1) sprite_index = spr_player_stop;
 }
-
 
 if(vs_speed < 0) sprite_index = spr_player_up;
 if(vs_speed > 0) sprite_index = spr_player_down;

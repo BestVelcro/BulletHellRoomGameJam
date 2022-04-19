@@ -1,5 +1,5 @@
-x = room_width/2;
-y = room_height/2;
+x = -100;
+y = -100;
 hit = 0;
 gun_side = 0;
 cannon_angle = 0;

@@ -4,7 +4,7 @@ if(instance_exists(obj_player)) player_direction = point_direction(x,y-sprite_he
 
 if(!lock) and (abs(angle_difference(player_direction,sniper_angle)) > 1) and (!get_out) sniper_angle += sign(angle_difference(player_direction,sniper_angle))*2;
 
-if(!get_out) y_offset = lerp(0,y_offset,0.9);
+if(!get_out) y_offset = clamp(y_offset - 1,0,y_default_offset);
 
 if(y_offset <= 1) lock = false;
 
@@ -24,7 +24,7 @@ y_offset++;
 if(y_offset >= y_default_offset+sprite_get_width(spr_gun_sniper)) instance_destroy();
 }
 
-if(can_shoot) and (!get_out) and (abs(angle_difference(player_direction,sniper_angle)) < 22){
+if(can_shoot) and (!get_out) and (abs(angle_difference(player_direction,sniper_angle)) < 22) and (y_offset < 1){
 	can_shoot = false;
 	alarm[0] = room_speed*1.5;
 	var bullet = instance_create_layer(x,y+y_offset-sprite_width,"PlayerGun",obj_enemy_bullet);
@@ -32,4 +32,9 @@ if(can_shoot) and (!get_out) and (abs(angle_difference(player_direction,sniper_a
 	bullet.direction = sniper_angle;
 	bullet.speed = 15;
 	bullet.image_angle = sniper_angle;
+	x_recoil = lengthdir_x(14,sniper_angle+180);
+	y_recoil = lengthdir_y(14,sniper_angle+180);
 }
+
+x_recoil = lerp(0,x_recoil,0.5);
+y_recoil = lerp(0,y_recoil,0.5);

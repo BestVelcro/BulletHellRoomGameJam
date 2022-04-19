@@ -10,8 +10,8 @@ switch(global.current_state){
 	case "STARTUP":
 	// Starts CHALLENGE phase
 	global.current_state = "CHALLENGE";
-	global.time = room_speed*8;
-	RoundSetup(global.current_round,global.challenges);
+	var challenge_time = RoundSetup(global.current_round,global.challenges);
+	global.time = challenge_time;
 	break;
 	case "CHALLENGE":
 	// Starts END phase

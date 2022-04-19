@@ -10,6 +10,7 @@ switch(current_round){
 	switch(choosen_challenge){
 		case 1:
 		SummonGuns(4);
+		instance_create_layer(room_width/4,room_height-(sprite_get_height(spr_wall)),"Guns",obj_ground_gun);
 		break;
 		case 2:
 		SummonGuns(2);
@@ -23,9 +24,11 @@ switch(current_round){
 		break;
 		case 5:
 		SummonGuns(10);
+		instance_create_layer(room_width/4,room_height-(sprite_get_height(spr_wall)),"Guns",obj_ground_gun);
 		break;
 		case 6:
 		SummonGuns(12);
+		instance_create_layer(room_width/4,room_height-(sprite_get_height(spr_wall)),"Guns",obj_ground_gun);
 		break;
 	}
 	break;
@@ -148,6 +151,7 @@ switch(current_round){
 	}
 	break;
 }
+return room_speed*8;
 }
 
 function SummonGuns(gun_quantity){

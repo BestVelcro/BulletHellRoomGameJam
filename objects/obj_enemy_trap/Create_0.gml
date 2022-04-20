@@ -1,8 +1,10 @@
-trap_type = "LANDMINE";
+trap_type = "BLADE";
 image_speed = 0;
 trigger = false;
-explosion = false;
+exploded = false;
 explosion_offset_x = 0;
 explosion_offset_y = 0;
-
-i = 0;
+alarm[1] = 1;
+spin_plataform = noone;
+created = false;
+spin_accel = 1;

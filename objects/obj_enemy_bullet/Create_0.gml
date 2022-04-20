@@ -1,1 +1,2 @@
 homing = false;
+exploded = false;

@@ -1,8 +1,10 @@
 {
   "resources": [
     {"id":{"name":"spr_landmine","path":"sprites/spr_landmine/spr_landmine.yy",},"order":7,},
+    {"id":{"name":"spr_spike_retract","path":"sprites/spr_spike_retract/spr_spike_retract.yy",},"order":10,},
     {"id":{"name":"spr_bullet_rpg","path":"sprites/spr_bullet_rpg/spr_bullet_rpg.yy",},"order":1,},
     {"id":{"name":"obj_enemy_gun","path":"objects/obj_enemy_gun/obj_enemy_gun.yy",},"order":0,},
+    {"id":{"name":"spr_spike","path":"sprites/spr_spike/spr_spike.yy",},"order":9,},
     {"id":{"name":"spr_gun_sniper_support","path":"sprites/spr_gun_sniper_support/spr_gun_sniper_support.yy",},"order":5,},
     {"id":{"name":"spr_buttom_end","path":"sprites/spr_buttom_end/spr_buttom_end.yy",},"order":9,},
     {"id":{"name":"PlataformBuild","path":"scripts/PlataformBuild/PlataformBuild.yy",},"order":3,},
@@ -33,6 +35,7 @@
     {"id":{"name":"spr_player_gun","path":"sprites/spr_player_gun/spr_player_gun.yy",},"order":4,},
     {"id":{"name":"RoundSetup","path":"scripts/RoundSetup/RoundSetup.yy",},"order":5,},
     {"id":{"name":"spr_plataform_close","path":"sprites/spr_plataform_close/spr_plataform_close.yy",},"order":8,},
+    {"id":{"name":"spr_blade","path":"sprites/spr_blade/spr_blade.yy",},"order":11,},
     {"id":{"name":"spr_gun_minigun","path":"sprites/spr_gun_minigun/spr_gun_minigun.yy",},"order":3,},
     {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},"order":0,},
     {"id":{"name":"spr_gun_support","path":"sprites/spr_gun_support/spr_gun_support.yy",},"order":0,},

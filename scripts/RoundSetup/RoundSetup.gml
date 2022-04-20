@@ -10,24 +10,44 @@ switch(current_round){
 	switch(choosen_challenge){
 		case 1:
 		SummonGuns(4);
+		with(instance_create_layer(x,y,"Blade",obj_enemy_trap)){
+			trap_type = "BLADE";
+			event_user(0);
+		}
+		with(instance_create_layer(x,y,"Guns",obj_enemy_trap)){
+			x = irandom_range(sprite_width+sprite_get_height(spr_wall),room_width-sprite_width-sprite_get_height(spr_wall));
+			y = room_height-sprite_get_height(spr_wall)
+			trap_type = "LANDMINE";	
+			event_user(0);
+		}
 		instance_create_layer(room_width/4,room_height-(sprite_get_height(spr_wall)),"Guns",obj_ground_gun);
 		break;
 		case 2:
 		SummonGuns(2);
+		instance_create_layer(x,y,"Blade",obj_enemy_trap);
+		with(instance_create_layer(x,y,"Guns",obj_enemy_trap)){
+			x = irandom_range(sprite_width+sprite_get_height(spr_wall),room_width-sprite_width-sprite_get_height(spr_wall));
+			y = room_height-sprite_get_height(spr_wall)
+			trap_type = "SPIKE";	
+			event_user(0);
+		}
 		instance_create_layer(room_width/4,room_height-(sprite_get_height(spr_wall)),"Guns",obj_ground_gun);
 		break;
 		case 3:
-		SummonGuns(8);
+		SummonGuns(4);
+		instance_create_layer(x,y,"Blade",obj_enemy_trap);
 		break;
 		case 4:
 		SummonGuns(6);
+		instance_create_layer(x,y,"Blade",obj_enemy_trap);
 		break;
 		case 5:
-		SummonGuns(10);
+		SummonGuns(4);
+		instance_create_layer(x,y,"Blade",obj_enemy_trap);
 		instance_create_layer(room_width/4,room_height-(sprite_get_height(spr_wall)),"Guns",obj_ground_gun);
 		break;
 		case 6:
-		SummonGuns(12);
+		SummonGuns(6);
 		instance_create_layer(room_width/4,room_height-(sprite_get_height(spr_wall)),"Guns",obj_ground_gun);
 		break;
 	}

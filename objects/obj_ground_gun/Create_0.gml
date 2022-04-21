@@ -3,6 +3,7 @@ y_default_offset = y_offset;
 sniper_yscale = 90;
 sniper_angle = 90;
 lock = true;
+gun_damage = 40;
 
 get_out = false;
 

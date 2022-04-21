@@ -17,6 +17,7 @@ mask_index = spr_gun_support;
 aim_target = 0;
 aim_current_direction = cannon_angle;
 
+gun_damage = 15;
 get_out = false;
 
 can_shoot = true;
@@ -34,3 +35,5 @@ cannon_y = 0;
 
 barrage = 4;
 barrage_count = barrage;
+
+y = sprite_get_height(spr_wall);

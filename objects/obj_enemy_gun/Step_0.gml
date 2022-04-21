@@ -41,7 +41,8 @@ if(can_shoot) and (!get_out) and (!startup) and (abs(angle_difference(aim_target
 	bullet.direction = aim_current_direction+random_range(projectile_offset[0],projectile_offset[1]);
 	bullet.speed = projectile_speed;
 	bullet.image_angle = bullet.direction;
-	bullet.homing = can_home
+	bullet.homing = can_home;
+	bullet.bullet_damage = gun_damage;
 	if(bullets_fired >= bullet_limit){
 		get_out = true;
 	}
@@ -66,6 +67,67 @@ if(abs(angle_difference(aim_target,aim_current_direction)) > gun_precision){
 }else{
 laser_startup = lerp(1,laser_startup,0.8);
 }
+
+if(!instance_exists(obj_sensor)) instance_create_layer(0,0,"Cenario", obj_sensor);
+
+obj_sensor.x = x;
+obj_sensor.y = y;
+obj_sensor.image_angle = aim_current_direction;
+obj_sensor.image_xscale = length_laser;
+obj_sensor.image_yscale = sprite_get_height(spr_bullet_laser);
+
+//Collision Detection
+with(obj_sensor){
+	/*
+    if(place_meeting(x,y,obj_sensor)){
+		DamageTaken(other.gun_damage,false,4);
+    }
+	*/
+	var dir_x = 0;
+	var dir_y = 0;
+	var laser_length = 0;
+	repeat(image_xscale){
+		if(position_meeting(x+dir_x,y+dir_y,obj_player)){
+			DamageTaken(other.gun_damage,false,4);
+			repeat(5){
+				var particle = instance_create_layer(x+dir_x,y+dir_y,"TopParticles",obj_particle);
+				particle.x += random_range(-3,3);
+				particle.y += random_range(-3,3);
+				particle.sprite_index = spr_bullet_laser_particle;
+				particle.direction = irandom(360);
+				particle.speed = random(3)+1;
+				particle.image_speed = 1;
+				particle.image_index = irandom(particle.image_number-1);
+				particle.image_color = choose(c_white,c_yellow,c_red);
+				particle.particle_owner = other.id;
+			}
+			break;
+		}
+		laser_length++;
+		dir_x = lengthdir_x(laser_length,image_angle);
+		dir_y = lengthdir_y(laser_length,image_angle);
+	}
+}
+
+// Deal with particles
+var particle_instances = ds_list_create();
+with(obj_particle){
+	if(particle_owner == other.id) ds_list_add(particle_instances,id);
+}
+
+var particle_pos = 0;
+repeat(ds_list_size(particle_instances)){
+	var particle_id = ds_list_find_value(particle_instances,particle_pos);
+	
+	particle_id.speed -= particle_id.speed/(irandom(2)+1+(irandom(1)*10))//lerp(0,particle_id.speed,0.9);
+	particle_id.image_alpha -= irandom(1)/10;
+	
+	if(particle_id.image_alpha <= 0) instance_destroy(particle_id);
+	particle_pos++;
+}
+
+ds_list_destroy(particle_instances);
+
 }
 
 if(aim_current_direction > 90) and (aim_current_direction < 270) image_yscale = -1; else image_yscale = 1;

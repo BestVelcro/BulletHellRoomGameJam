@@ -1,8 +1,10 @@
 if(trap_type == "LANDMINE"){
 	exploded = true;
+	obj_manager.shake_magnitude += obj_manager.shake_max_magnitude;
 	var player_reach = instance_place(x,y,obj_player);
 	if(player_reach != noone){
-		global.player_hp -= 80;
+		DamageTaken(trap_damage, true, false);
+		obj_manager.shake_magnitude += obj_manager.shake_max_magnitude/2;
 	}
 	repeat(30){
 		explosion_offset_x = random_range(-sprite_width,sprite_width);

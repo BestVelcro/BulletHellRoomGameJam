@@ -30,6 +30,7 @@ gun_precision = 10;
 laser = false;
 laser_x = 0;
 laser_y = 0;
+gun_damage = 600;
 
 laseroffset_x = 0;
 laseroffset_y = 0;

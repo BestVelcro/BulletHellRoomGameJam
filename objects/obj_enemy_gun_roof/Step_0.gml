@@ -49,6 +49,7 @@ if(can_shoot) and (!get_out) and (!startup) and (abs(aim_target_difference) <= g
 	bullet.speed = projectile_speed;
 	bullet.image_angle = bullet.direction;
 	bullet_angle += angle_offset;
+	bullet.bullet_damage = gun_damage;
 	}
 }
 

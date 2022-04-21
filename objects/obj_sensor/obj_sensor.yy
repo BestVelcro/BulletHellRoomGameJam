@@ -4,7 +4,7 @@
     "path": "sprites/spr_bullet_laser/spr_bullet_laser.yy",
   },
   "solid": false,
-  "visible": true,
+  "visible": false,
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": null,

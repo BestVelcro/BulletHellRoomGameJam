@@ -32,6 +32,7 @@ if(can_shoot) and (!get_out) and (abs(angle_difference(player_direction,sniper_a
 	bullet.direction = sniper_angle;
 	bullet.speed = 15;
 	bullet.image_angle = sniper_angle;
+	bullet.bullet_damage = gun_damage;
 	x_recoil = lengthdir_x(14,sniper_angle+180);
 	y_recoil = lengthdir_y(14,sniper_angle+180);
 }

@@ -12,14 +12,14 @@ repeat(global.plataform_count){
 	visible_status = irandom(1);
 	plataform.visible = visible_status;
 	if(x_count < 3){
-	plataform.x = starting_x+((room_width/4)*x_count);
+	plataform.x = round(starting_x+((room_width/4)*x_count));
 	}else{
 	x_count = 0;
 	y_count++;
 	layer_plataform = false;
-	plataform.x = starting_x+((room_width/4)*x_count);
+	plataform.x = round(starting_x+((room_width/4)*x_count));
 	}
-	plataform.y = starting_y+((room_height/4)*y_count);
+	plataform.y = round(starting_y+((room_height/4)*y_count));
 	x_count++;
 	/////////////////// This Prevents a layer with no plataforms
 		plataform.visible = visible_status;

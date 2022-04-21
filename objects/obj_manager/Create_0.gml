@@ -6,4 +6,11 @@ global.current_challenge = 0;
 global.challenges = [1,2,3,4,5,6];
 
 global.player_hp = 100;
+
+shake_fx = layer_get_fx("ScreenShake");
+shake_max_magnitude = 5;
+shake_max_speed = 3;
+shake_magnitude = 0;
+shake_speed = shake_max_speed;
+
 randomize();

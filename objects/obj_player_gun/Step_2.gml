@@ -17,9 +17,10 @@ if(instance_exists(obj_player)){
 		image_yscale = sides_horizontal;
 		image_angle = point_direction(0,0,sides_horizontal,sides_vertical);
 	}
+	visible = obj_player.visible;
 }
 
-if(fire_buttom) and (can_fire){
+if(fire_buttom) and (can_fire) and (visible){
 	can_fire = false;
 	alarm[0] = room_speed/8;
 	var bullet = instance_create_layer(x,y,"PlayerGun",obj_player_bullet);

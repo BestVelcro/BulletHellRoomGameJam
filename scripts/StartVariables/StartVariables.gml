@@ -4,3 +4,5 @@ global.gun_number_size = 4;
 global.gun_number_current_size = global.gun_number_size;
 global.plataform_count = 9;
 global.player_hp = 100;
+global.player_armor = 1;
+

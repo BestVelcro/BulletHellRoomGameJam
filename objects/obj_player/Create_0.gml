@@ -11,3 +11,13 @@ can_jump = 0;
 on_floor = false;
 
 jump_buffer = 6;
+
+iframe = false;
+
+hit_flash = 0;
+flash_decrease = 0;
+flash_sprite = spr_player_stop_flash;
+
+old_health = global.player_hp;
+
+dead = false;

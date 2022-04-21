@@ -28,4 +28,16 @@ repeat(ds_list_size(particle_instances)){
 }
 
 ds_list_destroy(particle_instances);	
+
+if(!player_checked) and (exploded){
+	obj_manager.shake_magnitude = obj_manager.shake_max_magnitude;
+	mask_index = spr_landmine_hitbox;
+	var player_reach = instance_place(x,y,obj_player);
+	if(player_reach != noone){
+		obj_manager.shake_magnitude += obj_manager.shake_max_magnitude/2;
+			DamageTaken(bullet_damage, true, false);
+	}
+	player_checked = true;
+}
+
 }

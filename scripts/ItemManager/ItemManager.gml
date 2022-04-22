@@ -5,9 +5,10 @@
 	["Boots", "Go quickly", spr_boots, true, false, false , 30, 1],
 	["Broken Shield", "Damage and Armor", spr_broken_shield, true, false, false, 15, 2],
 	["Bullet Rain", "More fire Rate", spr_bullet_rain, true, false, false, 15, 3],
-	["Continuous Beam", "Spinning Beam", spr_continuous_beam, true, false, false, 15, 4],
+	["Infibeam", "Constant Spinning Beam", spr_continuous_beam, true, false, false, 15, 4],
 	["Fuzil", "High Fire Rate High Speed", spr_damage_speed, true, false, false, 15, 5],
-	["Dash", "Double tap to Dash", spr_dash, false, true, false, 15, 6]
+	["Dash", "Double tap to Dash", spr_dash, false, true, false, 15, 6],
+	["Big Heart", "Double Health", spr_double_health, true, false, false, 15, 7]
 	]
 	
 
@@ -40,6 +41,10 @@ function OnPickup(item_id) {
 			bullet_speed -= floor(default_bullet_speed/4);
 		}
 		break;
+		case 7:
+		global.player_max_hp += global.player_max_hp;
+		global.player_hp = global.player_max_hp;
+		break;
 	}
 }
 
@@ -53,20 +58,25 @@ function OnStep(item_id) {
 			hs_speed += image_xscale*(hs_max_speed*10);
 			dash_buttom = room_speed;
 			on_dash = true;
+			dash_x = x;
+			dash_y = y;
 			}
 			if(can_dash) dash_buttom = room_speed/4;
 			last_pressed = press_horizontal;
 		}
+		
 		if(on_dash){
-			show_debug_message(string(x));
 			var test = instance_create_layer(x,y,"TopParticles",obj_particle);
 			test.sprite_index = sprite_index;
-			//test.direction = 180*image_xscale;
+			test.image_xscale = image_xscale;
 			test.image_speed = 0;
 			test.image_index = image_index;
 			test.particle_owner = id;
+			test.particle_type = "dash_particle";
 		}
-		if(on_dash) and (hs_speed <= hs_max_speed+1) on_dash = false;
+		
+		if(on_dash) and (abs(hs_speed) <= hs_max_speed+1) on_dash = false;
+		
 		if(!can_dash) and (dash_buttom <= 0){
 			can_dash = true;
 			repeat(20){
@@ -76,12 +86,20 @@ function OnStep(item_id) {
 			particle.speed = 2;
 			particle.particle_owner = id;
 			particle.image_color = c_blue;
+			particle.particle_type = "dash_on_particle";
 			}
 		}
 		with(obj_particle){
 			if(particle_owner == other.id){
-			//	speed -= 0.05;
-			//	image_alpha -= 0.02;
+				switch(particle_type){
+				case "dash_on_particle":
+				speed -= 0.05;
+				image_alpha -= 0.02;
+				break;
+				case "dash_particle":
+				image_alpha -= 0.05;
+				break;
+				}
 				if(image_alpha <= 0) instance_destroy();	
 			}
 		}

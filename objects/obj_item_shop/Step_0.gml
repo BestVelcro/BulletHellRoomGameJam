@@ -15,3 +15,12 @@ ds_list_add(obj_player.my_items, random_item);
 show_debug_message(string(global.items_on_play));
 instance_destroy();
 }
+
+if(!get_out){
+	sprite_show = clamp(sprite_show + 1,0,sprite_height);
+	alpha = clamp(alpha+alpha_increase,0,1);
+}else{
+	sprite_show--;	
+	alpha -= alpha_increase;
+	if(sprite_show <= 0) instance_destroy();
+}

@@ -17,6 +17,8 @@ for(i = 0; i < max_length; i++){
 if(instance_exists(obj_player)){
 	x = obj_player.x;
 	y = obj_player.y-(obj_player.sprite_height/2+obj_player.sprite_height/4);
+}else{
+	instance_destroy();	
 }
 
 if(!instance_exists(obj_sensor)) instance_create_layer(0,0,"Cenario", obj_sensor);

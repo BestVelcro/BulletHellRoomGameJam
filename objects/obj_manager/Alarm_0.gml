@@ -36,10 +36,11 @@ switch(global.current_state){
 	global.challenges = [1,2,3,4,5,6];
 	/////// CREATE ITEMS
 
-	var item_space = room_width/3;
-	var item_x = item_space/2;
+	var item_space = room_width/4;
+	var item_x = room_width/2-(room_width/4);
 	repeat(3){
 		var item = instance_create_layer(item_x,room_height/2,"Manager",obj_item_shop);
+		item.y -= (item.sprite_height/2)+(sprite_get_height(spr_plataform)/2);
 		var choosen_item = irandom(array_length(global.items_on_play)-1);
 		item.random_item = global.items_on_play[choosen_item];
 		array_delete(global.items_on_play,choosen_item,1);

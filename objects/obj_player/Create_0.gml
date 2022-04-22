@@ -14,6 +14,9 @@ can_dash = true;
 last_pressed = 0;
 on_dash = false;
 
+dash_x = 0;
+dash_y = 0;
+
 can_jump = 0;
 on_floor = false;
 

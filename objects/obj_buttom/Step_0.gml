@@ -5,6 +5,7 @@ if(global.current_state == "SHOP") and (!show){
 	image_index = 0;
 }
 if(place_meeting(x,y,obj_player)) and (keyboard_check_pressed(ord("Z"))) and (global.current_state == "SHOP") and (show){
+	with(obj_item_shop) instance_destroy();
 	sprite_index = spr_buttom_starts;
 	image_speed = 1;
 	image_index = 0;

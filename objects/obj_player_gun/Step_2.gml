@@ -18,15 +18,15 @@ if(instance_exists(obj_player)){
 		image_angle = point_direction(0,0,sides_horizontal,sides_vertical);
 	}
 	visible = obj_player.visible;
-}
 
 if(fire_buttom) and (can_fire) and (visible){
 	can_fire = false;
-	alarm[0] = room_speed/8;
+	alarm[0] = fire_rate;
 	var bullet = instance_create_layer(x,y,"PlayerGun",obj_player_bullet);
 	bullet.direction = image_angle;
 	bullet.image_yscale = image_yscale;
-	bullet.speed = 5;
+	bullet.speed = bullet_speed;
+	bullet.hspeed += obj_player.hs_speed/2;
 	bullet.image_angle = bullet.direction;
 	bullet.damage = base_damage+global.player_damage;
 	x_offset = lengthdir_x(8,image_angle+180);
@@ -35,3 +35,5 @@ if(fire_buttom) and (can_fire) and (visible){
 
 x_offset = lerp(0,x_offset,0.5);
 y_offset = lerp(0,y_offset,0.5);
+
+}

@@ -34,6 +34,19 @@ switch(global.current_state){
 	global.current_state = "SHOP";
 	global.clock = true;
 	global.challenges = [1,2,3,4,5,6];
+	/////// CREATE ITEMS
+
+	var item_space = room_width/3;
+	var item_x = item_space/2;
+	repeat(3){
+		var item = instance_create_layer(item_x,room_height/2,"Manager",obj_item_shop);
+		var choosen_item = irandom(array_length(global.items_on_play)-1);
+		item.random_item = global.items_on_play[choosen_item];
+		array_delete(global.items_on_play,choosen_item,1);
+		item_x += item_space;
+	}
+	
+	//////
 	}
 	global.time = room_speed;
 	break;

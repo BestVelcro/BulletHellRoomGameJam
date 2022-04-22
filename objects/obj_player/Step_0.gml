@@ -1,4 +1,4 @@
-var horizontal_speed = keyboard_check(vk_right)-keyboard_check(vk_left);
+horizontal_speed = keyboard_check(vk_right)-keyboard_check(vk_left);
 var jump = keyboard_check(vk_space);
 var key_down = keyboard_check(vk_down);
 var lock = keyboard_check(ord("C"));

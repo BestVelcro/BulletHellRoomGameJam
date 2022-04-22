@@ -6,6 +6,13 @@ switch(gun_side){
 		}
 	}
 	break;
+	case -1:
+	if(ds_exists(global.right_slots, ds_type_list)){
+		if(ds_list_find_index(global.right_slots,y) == -1){
+			ds_list_add(global.right_slots,y);
+		}
+	}
+	break;
 }
 
 with(obj_particle){

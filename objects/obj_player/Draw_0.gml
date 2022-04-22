@@ -5,7 +5,7 @@ draw_sprite_ext(flash_sprite,image_index,x,y,image_xscale,image_yscale,image_ang
 
 draw_set_halign(fa_center);
 
-draw_text(x,y-35,string(global.player_hp));
+draw_text(x,y-35,string(on_dash));
 
 draw_set_halign(fa_left);
 

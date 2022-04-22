@@ -9,6 +9,8 @@ if(global.items_array[random_item][5]){
 	ds_list_add(clock_items, item_clock);
 	}
 }
+bough = true;
 ds_list_add(obj_player.my_items, random_item);
-array_delete(global.items_on_play, random_item, 1);
+show_debug_message(string(global.items_on_play));
+//array_delete(global.items_on_play, random_item, 1);
 instance_destroy();

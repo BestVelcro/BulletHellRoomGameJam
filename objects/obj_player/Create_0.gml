@@ -21,3 +21,7 @@ flash_sprite = spr_player_stop_flash;
 old_health = global.player_hp;
 
 dead = false;
+
+clock_items = ds_list_create();
+
+my_items = ds_list_create();

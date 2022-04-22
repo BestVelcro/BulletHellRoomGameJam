@@ -36,4 +36,6 @@ cannon_y = 0;
 barrage = 4;
 barrage_count = barrage;
 
+turret_health = 30;
+
 y = sprite_get_height(spr_wall);

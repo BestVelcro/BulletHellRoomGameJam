@@ -5,7 +5,7 @@ switch(global.current_state){
 	global.current_challenge++;
 	global.current_state = "STARTUP";
 	global.time = room_speed/2;
-	PlataformBuild();
+	PlataformBuild(true);
 	break;
 	case "STARTUP":
 	// Starts CHALLENGE phase
@@ -26,9 +26,11 @@ switch(global.current_state){
 	// Starts WAIT TIME phase
 	global.current_state = "WAIT_TIME";
 	if(global.current_challenge >= 3){
+	global.player_hp = global.player_max_hp;
 	global.current_challenge = 0;
 	global.current_round++;
 	// If passed 3 challenges starts SHOP phase instead
+	PlataformBuild(false);
 	global.current_state = "SHOP";
 	global.clock = true;
 	global.challenges = [1,2,3,4,5,6];

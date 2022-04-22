@@ -28,6 +28,7 @@ if(fire_buttom) and (can_fire) and (visible){
 	bullet.image_yscale = image_yscale;
 	bullet.speed = 5;
 	bullet.image_angle = bullet.direction;
+	bullet.damage = base_damage+global.player_damage;
 	x_offset = lengthdir_x(8,image_angle+180);
 	y_offset = lengthdir_y(8,image_angle+180);
 }

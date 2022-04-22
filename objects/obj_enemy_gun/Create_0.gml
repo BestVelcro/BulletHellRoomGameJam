@@ -41,3 +41,5 @@ laseroffset_y = sprite_get_yoffset(choosen_gun);
 length_laser = 0;
 laser_startup = 4;
 laser_endpoint = 0;
+
+turret_health = 100;

@@ -1,6 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function PlataformBuild(){
+function PlataformBuild(random_plataforms){
 var starting_y = (room_height/2)-(room_height/4);
 var starting_x = (room_width/2)-(room_width/4);
 var x_count = 0;
@@ -9,7 +9,8 @@ var layer_plataform = false;
 var visible_status = false;
 repeat(global.plataform_count){
 	var plataform = instance_create_layer(x,y,"Plataforms",obj_plataform);
-	visible_status = irandom(1);
+	visible_status = 1;
+	if(random_plataforms) visible_status = irandom(1);
 	plataform.visible = visible_status;
 	if(x_count < 3){
 	plataform.x = round(starting_x+((room_width/4)*x_count));

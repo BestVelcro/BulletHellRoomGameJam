@@ -5,5 +5,5 @@ draw_text(10,50,"CHALLENGE: "+string(global.current_challenge));
 draw_text(10,70,"TIME: "+string(alarm_get(0)));
 draw_text(10,90,"POSSIBLE ROUNDS: "+string(global.challenges));
 */
-draw_text(10,10,"FPS: "+string(instance_number(obj_particle)));
-draw_text(10,30,"FPS: "+string(instance_exists(obj_player)));
+draw_text(10,10,"FPS: "+string(instance_number(fps_real)));
+//draw_text(10,30,"FPS: "+string(instance_exists(obj_player)));

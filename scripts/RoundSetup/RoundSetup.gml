@@ -1,33 +1,39 @@
 global.challenges = [1,2,3,4,5,6];
 
+global.left_slots = noone;
+global.summon_left_slot = noone;
+
+global.right_slots = noone;
+global.summon_right_slot = noone;
+
+global.laser_angles_left = noone;
+global.laser_angles_right = noone;
+
+#macro random_width (room_width/2)+random_range(-room_width/4,room_width/4)
+
 function RoundSetup(current_round,current_challenge){
 var setup_number = irandom(array_length(global.challenges)-1);
-var choosen_challenge = global.challenges[setup_number];
+var choosen_challenge = 1//global.challenges[setup_number];
 array_delete(global.challenges, setup_number,1)
 switch(current_round){
 	// ROUND 1 CHALLENGES
 	case 1:
 	switch(choosen_challenge){
 		case 1:
-		SummonGuns(4);
-		SummonTrap("BLADE", 0);
-		SummonTrap("LANDMINE", room_width/2);
-		SummonTrap("SPIKE", room_width/4);
-		SummonTrap("SNIPER", room_width/2+room_width/4);
+		SetGunsSlotsLeft([spr_gun_laser, spr_gun_rpg,spr_gun_weapon,spr_gun_laser], 3, [45,315]);
+		SetGunsSlotsRight([spr_gun_weapon], 1, noone);
 		break;
 		case 2:
 		SummonGuns(2);
 		SummonTrap("BLADE", 0);
-		SummonTrap("LANDMINE", room_width/2);
-		SummonTrap("SPIKE", room_width/4);
-		SummonTrap("SNIPER", room_width/2+room_width/4);
+		SummonTrap("LANDMINE", random_width);
+		SummonTrap("SPIKE", random_width);
+		SummonTrap("SNIPER", random_width);
 		break;
 		case 3:
 		SummonGuns(4);
 		SummonTrap("BLADE", 0);
-		SummonTrap("LANDMINE", room_width/2);
-		SummonTrap("SPIKE", room_width/4);
-		SummonTrap("SNIPER", room_width/2+room_width/4);
+		SummonTrap("SPIKE", random_width);
 		break;
 		case 4:
 		SummonGuns(6);
@@ -35,16 +41,14 @@ switch(current_round){
 		case 5:
 		SummonGuns(4);
 		SummonTrap("BLADE", 0);
-		SummonTrap("LANDMINE", room_width/2);
-		SummonTrap("SPIKE", room_width/4);
-		SummonTrap("SNIPER", room_width/2+room_width/4);
+		SummonTrap("LANDMINE", random_width);
+		SummonTrap("SPIKE", random_width);
+		SummonTrap("SNIPER", random_width);
 		break;
 		case 6:
-		SummonGuns(6);
+		SummonGuns(4);
 		SummonTrap("BLADE", 0);
-		SummonTrap("LANDMINE", room_width/2);
-		SummonTrap("SPIKE", room_width/4);
-		SummonTrap("SNIPER", room_width/2+room_width/4);
+		SummonTrap("SNIPER", random_width);
 		break;
 	}
 	break;
@@ -167,7 +171,7 @@ switch(current_round){
 	}
 	break;
 }
-return room_speed*8;
+return room_speed*16;
 }
 
 function SummonTrap(type_trap, x_coordinates){
@@ -184,7 +188,98 @@ function SummonTrap(type_trap, x_coordinates){
 		}
 	}
 }
+//////////////////////////
 
+
+// SET GUNS THAT CAN APPEAR ON THE LEFT SIDE
+function SetGunsSlotsLeft(guns_order, wall_slots, laser_angles){
+	global.summon_left_slot = guns_order;
+	var gun_spacement = room_height/wall_slots;
+	var slot = gun_spacement/2;
+	if(ds_exists(global.left_slots, ds_type_list)) ds_list_destroy(global.left_slots);
+	global.left_slots = ds_list_create();
+	repeat(wall_slots){
+	ds_list_add(global.left_slots, slot);
+	slot += gun_spacement;
+	}
+	if(laser_angles != noone){
+		global.laser_angles_left = laser_angles;	
+	}else{
+		global.laser_angles_left = noone;	
+	}
+}
+
+// SUMMON GUNS IN ANY AVALIABLE GUN SLOTS ON THE LEFT SIDE
+function SummonGunsLeftSlot(){
+	if(ds_exists(global.left_slots,ds_type_list)){
+	repeat(ds_list_size(global.left_slots)){
+		var gun = array_pop(global.summon_left_slot);
+		///////////////////////////////
+	if(gun != undefined){
+		with(instance_create_layer(x,y,"Guns",obj_enemy_gun)){
+			gun_side = 1;
+			x = sprite_get_width(spr_wall);
+			y = ds_list_find_value(global.left_slots,0);
+			choosen_gun = gun;
+			if(gun == spr_gun_laser) and (global.laser_angles_left != noone){
+				laser_endpoint = array_pop(global.laser_angles_left);
+			}
+			alarm[1] = 2;
+		}
+	}
+	ds_list_delete(global.left_slots,0);
+	}
+	///////////////////////////////
+	}
+}
+
+//////////////////////////
+
+// SET GUNS THAT CAN APPEAR ON THE RIGHT SIDE
+function SetGunsSlotsRight(guns_order, wall_slots, laser_angles){
+	global.summon_right_slot = guns_order;
+	var gun_spacement = room_height/wall_slots;
+	var slot = gun_spacement/2;
+	if(ds_exists(global.right_slots, ds_type_list)) ds_list_destroy(global.right_slots);
+	global.right_slots = ds_list_create();
+	repeat(wall_slots){
+	ds_list_add(global.right_slots, slot);
+	slot += gun_spacement;
+	}
+	if(laser_angles != noone){
+		global.laser_angles_right = laser_angles;	
+	}else{
+		global.laser_angles_right = noone;	
+	}
+}
+
+// SUMMON GUNS IN ANY AVALIABLE GUN SLOTS ON THE RIGHT SIDE
+function SummonGunsRightSlot(){
+	if(ds_exists(global.right_slots,ds_type_list)){
+	repeat(ds_list_size(global.right_slots)){
+		var gun = array_pop(global.summon_right_slot);
+		///////////////////////////////
+	if(gun != undefined){
+		with(instance_create_layer(x,y,"Guns",obj_enemy_gun)){
+			gun_side = -1;
+			cannon_angle = 180;
+			image_xscale = -1;
+			x = room_width-sprite_get_width(spr_wall);
+			y = ds_list_find_value(global.right_slots,0);
+			choosen_gun = gun;
+			if(gun == spr_gun_laser) and (global.laser_angles_right != noone){
+				laser_endpoint = array_pop(global.laser_angles_right);
+			}
+			alarm[1] = 2;
+		}
+	}
+	ds_list_delete(global.right_slots,0);
+	}
+	///////////////////////////////
+	}
+}
+
+//////////////////////////
 function SummonGuns(gun_quantity){
 var number_of_guns = gun_quantity;
 if(number_of_guns/2 != floor(number_of_guns/2)) number_of_guns++; 
@@ -211,8 +306,8 @@ repeat(global.gun_number_size){
 			global.gun_number_current_size--;
 		}
 	}	
-	choosen_gun = choose(spr_gun_laser);
-	laser_endpoint = choose(45,315,25,340,300,0,70);
+	choosen_gun = choose(spr_gun_laser,spr_gun_rpg,spr_gun_weapon,spr_gun_minigun);
+	laser_endpoint = choose(45,315,0,70,20);
 	alarm[1] = 2;
 	}
 }

@@ -1,0 +1,10 @@
+draw_self();
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
+var text_height = string_height("MLPI");
+draw_text(x,y-(sprite_height/2)-(text_height/2),string(global.items_array[random_item][0]));
+draw_sprite(global.items_array[random_item][2],0,x,y);
+draw_text(x,y+(sprite_height/2)+(text_height/2),string(global.items_array[random_item][1]));
+draw_set_font(ItemFont);
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);

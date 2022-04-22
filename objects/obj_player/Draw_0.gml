@@ -11,7 +11,7 @@ draw_set_halign(fa_left);
 
 
 if(old_health != global.player_hp){
-show_debug_message("Damage taken: "+string(old_health-global.player_hp));
+//show_debug_message("Damage taken: "+string(old_health-global.player_hp));
 }
 
 old_health = global.player_hp;

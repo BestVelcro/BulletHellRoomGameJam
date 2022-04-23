@@ -7,4 +7,5 @@ view_visible[0] = true;
 	array_copy(global.items_on_play,i,global.items_array[i],7,1);
 	i++
 	}
-	show_debug_message(string(global.items_on_play));
+	
+room_goto_next();

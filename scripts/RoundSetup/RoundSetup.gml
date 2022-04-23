@@ -13,40 +13,47 @@ global.laser_angles_right = noone;
 
 function RoundSetup(current_round,current_challenge){
 var setup_number = irandom(array_length(global.challenges)-1);
-var choosen_challenge = 1//global.challenges[setup_number];
+var choosen_challenge = global.challenges[setup_number];
 array_delete(global.challenges, setup_number,1)
+show_debug_message(string(choosen_challenge));
 switch(current_round){
 	// ROUND 1 CHALLENGES
 	case 1:
 	switch(choosen_challenge){
 		case 1:
-		SetGunsSlotsLeft([spr_gun_weapon], 3, [0,0,0,0,0]);
-		SetGunsSlotsRight([spr_gun_weapon, spr_gun_weapon, spr_gun_minigun], 2, noone);
+		SetGunsSlotsLeft([spr_gun_weapon], 3, noone);
+		SetGunsSlotsRight([spr_gun_weapon, spr_gun_weapon, spr_gun_minigun], 3, noone);
+		SummonTrap("SNIPER", random_width);
 		break;
 		case 2:
-		SummonGuns(2);
+		SetGunsSlotsLeft([spr_gun_laser], 1, [315]);
+		SetGunsSlotsRight([spr_gun_weapon, spr_gun_rpg, spr_gun_weapon], 2, noone);
 		SummonTrap("BLADE", 0);
 		SummonTrap("LANDMINE", random_width);
 		SummonTrap("SPIKE", random_width);
 		SummonTrap("SNIPER", random_width);
 		break;
 		case 3:
-		SummonGuns(4);
+		SetGunsSlotsLeft([spr_gun_weapon,spr_gun_weapon,spr_gun_weapon], 2, noone);
+		SetGunsSlotsRight([spr_gun_minigun, spr_gun_rpg, spr_gun_laser], 1, [45]);
 		SummonTrap("BLADE", 0);
 		SummonTrap("SPIKE", random_width);
 		break;
 		case 4:
-		SummonGuns(6);
+		SetGunsSlotsLeft([spr_gun_weapon,spr_gun_weapon,spr_gun_minigun], 1, noone);
+		SetGunsSlotsRight([spr_gun_minigun, spr_gun_rpg, spr_gun_weapon], 1, noone);
 		break;
 		case 5:
-		SummonGuns(4);
+		SetGunsSlotsLeft([spr_gun_weapon,spr_gun_weapon,spr_gun_weapon], 2, noone);
+		SetGunsSlotsRight([spr_gun_minigun, spr_gun_rpg, spr_gun_laser], 1, [45]);
 		SummonTrap("BLADE", 0);
 		SummonTrap("LANDMINE", random_width);
 		SummonTrap("SPIKE", random_width);
 		SummonTrap("SNIPER", random_width);
 		break;
 		case 6:
-		SummonGuns(4);
+		SetGunsSlotsLeft([spr_gun_weapon], 3, noone);
+		SetGunsSlotsRight([spr_gun_weapon, spr_gun_weapon, spr_gun_minigun], 3, noone);
 		SummonTrap("BLADE", 0);
 		SummonTrap("SNIPER", random_width);
 		break;

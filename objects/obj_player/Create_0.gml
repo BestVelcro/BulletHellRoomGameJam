@@ -17,6 +17,7 @@ on_dash = false;
 dash_x = 0;
 dash_y = 0;
 
+jump = 0;
 can_jump = 0;
 on_floor = false;
 
@@ -31,6 +32,8 @@ flash_sprite = spr_player_stop_flash;
 old_health = global.player_hp;
 
 dead = false;
+
+double_jump = true;
 
 clock_items = ds_list_create();
 

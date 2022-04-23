@@ -28,7 +28,6 @@ obj_sensor.y = y;
 obj_sensor.image_angle = direction;
 obj_sensor.image_xscale = length_laser;
 obj_sensor.image_yscale = sprite_height/sprite_get_height(spr_bullet_laser);
-show_debug_message(string(obj_sensor.image_yscale));
 
 //Collision Detection
 with(obj_sensor){
@@ -41,6 +40,14 @@ with(obj_enemy_gun){
 	}
 }
 with(obj_enemy_gun_roof){
+	if(place_meeting(x,y,obj_sensor)){
+		if(!get_out) and (!startup){
+		hit = 0.5;
+		turret_health -= 5+floor(global.player_damage/4);
+		}
+	}
+}
+with(obj_ground_gun){
 	if(place_meeting(x,y,obj_sensor)){
 		if(!get_out) and (!startup){
 		hit = 0.5;

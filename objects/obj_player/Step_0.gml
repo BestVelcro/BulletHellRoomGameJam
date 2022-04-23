@@ -1,5 +1,5 @@
 horizontal_speed = keyboard_check(vk_right)-keyboard_check(vk_left);
-var jump = keyboard_check(vk_space);
+jump = keyboard_check_pressed(vk_space);
 var key_down = keyboard_check(vk_down);
 var lock = keyboard_check(ord("C"));
 jump = jump*(!lock);
@@ -59,9 +59,11 @@ if(onPlataform != noone) and (!can_fall) and (vs_speed > 0){
 	}
 }
 
+
 if(can_jump > 0) and (!on_floor) and (jump){
 	can_jump = 0;
 	vs_speed = jump*-jump_power;
+	jump = -1;
 }
 
 if(place_meeting(x,y+vs_speed,obj_wall)){

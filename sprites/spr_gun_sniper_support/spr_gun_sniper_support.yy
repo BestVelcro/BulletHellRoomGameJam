@@ -1,5 +1,5 @@
 {
-  "bboxMode": 0,
+  "bboxMode": 2,
   "collisionKind": 1,
   "type": 0,
   "origin": 7,
@@ -7,8 +7,8 @@
   "edgeFiltering": false,
   "collisionTolerance": 0,
   "swfPrecision": 2.525,
-  "bbox_left": 0,
-  "bbox_right": 31,
+  "bbox_left": 14,
+  "bbox_right": 17,
   "bbox_top": 0,
   "bbox_bottom": 30,
   "HTile": false,
@@ -27,6 +27,9 @@
     {"compositeImage":{"FrameId":{"name":"71fa8c19-d022-4671-8cf4-fc3c4ffaa23b","path":"sprites/spr_gun_sniper_support/spr_gun_sniper_support.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
         {"FrameId":{"name":"71fa8c19-d022-4671-8cf4-fc3c4ffaa23b","path":"sprites/spr_gun_sniper_support/spr_gun_sniper_support.yy",},"LayerId":{"name":"841d9677-203b-48ce-8829-11d9a5d5deaa","path":"sprites/spr_gun_sniper_support/spr_gun_sniper_support.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
       ],"parent":{"name":"spr_gun_sniper_support","path":"sprites/spr_gun_sniper_support/spr_gun_sniper_support.yy",},"resourceVersion":"1.0","name":"71fa8c19-d022-4671-8cf4-fc3c4ffaa23b","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"2744c36d-2af9-41a0-a532-e01a123f3c93","path":"sprites/spr_gun_sniper_support/spr_gun_sniper_support.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"2744c36d-2af9-41a0-a532-e01a123f3c93","path":"sprites/spr_gun_sniper_support/spr_gun_sniper_support.yy",},"LayerId":{"name":"841d9677-203b-48ce-8829-11d9a5d5deaa","path":"sprites/spr_gun_sniper_support/spr_gun_sniper_support.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_gun_sniper_support","path":"sprites/spr_gun_sniper_support/spr_gun_sniper_support.yy",},"resourceVersion":"1.0","name":"2744c36d-2af9-41a0-a532-e01a123f3c93","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"spr_gun_sniper_support","path":"sprites/spr_gun_sniper_support/spr_gun_sniper_support.yy",},
@@ -36,12 +39,13 @@
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
-    "length": 1.0,
+    "length": 2.0,
     "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
             {"id":"94a64cc1-5a6e-4acf-8882-7a94a5a648ff","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"71fa8c19-d022-4671-8cf4-fc3c4ffaa23b","path":"sprites/spr_gun_sniper_support/spr_gun_sniper_support.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"3b4624f9-fdcd-4171-8e20-643dbd300aca","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"2744c36d-2af9-41a0-a532-e01a123f3c93","path":"sprites/spr_gun_sniper_support/spr_gun_sniper_support.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,

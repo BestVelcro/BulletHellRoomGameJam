@@ -12,7 +12,6 @@ if(global.items_array[random_item][5]){
 }
 bough = true;
 ds_list_add(obj_player.my_items, random_item);
-show_debug_message(string(global.items_on_play));
 instance_destroy();
 }
 

@@ -8,7 +8,10 @@
 	["Infibeam", "Constant Spinning Beam", spr_continuous_beam, true, false, false, 15, 4],
 	["Fuzil", "High Fire Rate High Speed", spr_damage_speed, true, false, false, 15, 5],
 	["Dash", "Double tap to Dash", spr_dash, false, true, false, 15, 6],
-	["Big Heart", "Double Health", spr_double_health, true, false, false, 15, 7]
+	["Big Heart", "Double Health", spr_double_health, true, false, false, 15, 7],
+	["Sky Highs", "Double Jump", spr_double_jump, false, true, false, 15, 8],
+	["Grenade Launcher", "Kaboom!", spr_grenade, true, false, false, 15, 9]
+	//["Psychic", "Homing Shots", spr_homing, false, true, false, 15, 10]
 	]
 	
 
@@ -44,6 +47,24 @@ function OnPickup(item_id) {
 		case 7:
 		global.player_max_hp += global.player_max_hp;
 		global.player_hp = global.player_max_hp;
+		break;
+		case 9:
+		with(obj_player_gun){
+			var new_default_fire_rate = room_speed*1.5;
+			var new_default_bullet_speed = 6;
+			sprite_index = spr_player_gun_grenade_launcher;
+			bullet_shot = obj_player_grenade;
+			
+			fire_rate = new_default_fire_rate/(default_fire_rate/fire_rate);
+			default_fire_rate = new_default_fire_rate;
+			
+			bullet_speed = new_default_bullet_speed/(default_bullet_speed/bullet_speed);
+			default_bullet_speed = new_default_bullet_speed;
+			
+			base_damage = 40;
+			
+			global.player_damage += 5;
+		}
 		break;
 	}
 }
@@ -104,6 +125,18 @@ function OnStep(item_id) {
 			}
 		}
 		dash_buttom = clamp(dash_buttom-1,0,room_speed*4);
+		break;
+		case 8:
+			if(vs_speed != 0) and (jump) and (double_jump){
+				vs_speed = -jump_power;
+				double_jump = false;
+			}
+			if(on_floor){
+				double_jump = true;	
+			}
+		break;
+		case 10:
+		
 		break;
 	}
 }

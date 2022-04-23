@@ -22,7 +22,7 @@ if(instance_exists(obj_player)){
 if(fire_buttom) and (can_fire) and (visible){
 	can_fire = false;
 	alarm[0] = fire_rate;
-	var bullet = instance_create_layer(x,y,"PlayerGun",obj_player_bullet);
+	var bullet = instance_create_layer(x,y,"PlayerGun",bullet_shot);
 	bullet.direction = image_angle;
 	bullet.image_yscale = image_yscale;
 	bullet.speed = bullet_speed;

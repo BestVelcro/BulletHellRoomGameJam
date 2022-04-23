@@ -6,3 +6,5 @@ default_fire_rate = room_speed/8;
 fire_rate = default_fire_rate;
 default_bullet_speed = 5;
 bullet_speed = default_bullet_speed;
+
+bullet_shot = obj_player_bullet;

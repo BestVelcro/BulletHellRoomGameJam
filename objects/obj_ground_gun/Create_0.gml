@@ -5,6 +5,10 @@ sniper_angle = 90;
 lock = true;
 gun_damage = 40;
 
+hit = 0;
+
+startup = true;
+
 get_out = false;
 
 can_shoot = true;
@@ -15,3 +19,5 @@ player_direction = 0;
 
 x_recoil = 0
 y_recoil = 0
+
+turret_health = 120;

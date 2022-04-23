@@ -17,4 +17,3 @@ shake_magnitude = 0;
 shake_speed = shake_max_speed;
 
 randomize();
-

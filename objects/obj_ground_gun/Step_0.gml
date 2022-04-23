@@ -1,10 +1,18 @@
+hit = lerp(0,hit,0.2);
+
 if(sniper_angle > 90) and (sniper_angle < 270) sniper_yscale = -1; else sniper_yscale = 1;
 
 if(instance_exists(obj_player)) player_direction = point_direction(x,y-sprite_height,obj_player.x,obj_player.y);
 
 if(!lock) and (abs(angle_difference(player_direction,sniper_angle)) > 1) and (!get_out) sniper_angle += sign(angle_difference(player_direction,sniper_angle))*2;
 
-if(!get_out) y_offset = clamp(y_offset - 1,0,y_default_offset);
+if(!get_out) and (startup){
+	y_offset = clamp(y_offset - 1,0,y_default_offset);
+	if(y_offset <= 1){
+	startup = false;
+	y_offset = 0;
+	}
+}
 
 if(y_offset <= 1) lock = false;
 
@@ -39,3 +47,7 @@ if(can_shoot) and (!get_out) and (abs(angle_difference(player_direction,sniper_a
 
 x_recoil = lerp(0,x_recoil,0.5);
 y_recoil = lerp(0,y_recoil,0.5);
+
+if(turret_health <= 0) and (!get_out){
+	get_out = true;
+}

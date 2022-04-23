@@ -10,8 +10,17 @@
 	["Dash", "Double tap to Dash", spr_dash, false, true, false, 15, 6],
 	["Big Heart", "Double Health", spr_double_health, true, false, false, 15, 7],
 	["Sky Highs", "Double Jump", spr_double_jump, false, true, false, 15, 8],
-	["Grenade Launcher", "Kaboom!", spr_grenade, true, false, false, 15, 9]
-	//["Psychic", "Homing Shots", spr_homing, false, true, false, 15, 10]
+	["Grenade Launcher", "Kaboom!", spr_grenade, true, false, false, 15, 9],
+	["Psychic", "Homing Shots", spr_homing, true, true, false, 15, 10],
+	["Lucky Coins", "More Coins!", spr_lucky_coins, true, false, false, 15, 11],
+	["Magnet", "Very Attractive", spr_magnet, false, true, false, 15, 12],
+	["Mirror", "Backwards Shot", spr_mirror_shot, true, true, false, 15, 13],
+	["Bank Loan", "Money Flies!", spr_money_flies, true, true, false, 15, 14],
+	["Multibarrel", "More Bullets", spr_more_bullets, true, false, false, 15, 15],
+	["Light Steps", "No more Traps!", spr_non_trap, true, false, false, 15, 16],
+	["Holy Bubble", "Protection", spr_protection, true, false, false, 15, 17],
+	["Corrosion", "Kill from the inside", spr_radiation, false, false, true, 15, 18],
+	["Warm Heart", "Heal the Wounds", spr_regeneration, false, true, true, 15, 19]
 	]
 	
 
@@ -41,7 +50,8 @@ function OnPickup(item_id) {
 		case 5:
 		with(obj_player_gun){
 			fire_rate -= floor(default_fire_rate/4);
-			bullet_speed -= floor(default_bullet_speed/4);
+			bullet_speed += floor(default_bullet_speed/2);
+			spread = 3;
 		}
 		break;
 		case 7:
@@ -65,6 +75,29 @@ function OnPickup(item_id) {
 			
 			global.player_damage += 5;
 		}
+		break;
+		case 10:
+		with(obj_player_gun){
+			bullet_speed -= floor(default_bullet_speed/2);
+		}
+		break;
+		case 11:
+		global.coin_multiplier++;
+		break;
+		case 13:
+		with(obj_player_gun) sprite_index = spr_mirror_gun;
+		break;
+		case 14:
+		global.coin_multiplier++;
+		break;
+		case 15:
+		with(obj_player_gun) bullet_count++;
+		break;
+		case 16:
+		global.traps = false;
+		break;
+		case 17:
+		instance_create_layer(x,y,"Cenario",obj_player_orbital);
 		break;
 	}
 }
@@ -136,7 +169,85 @@ function OnStep(item_id) {
 			}
 		break;
 		case 10:
+		var bullet = obj_player_bullet;
+		with(obj_player_gun) bullet = bullet_shot;
+		with(bullet){	
+		var check_near = [instance_nearest(x,y,obj_enemy_gun),instance_nearest(x,y,obj_ground_gun),instance_nearest(x,y,obj_enemy_gun_roof)];
+		var object_distance = room_width*99;
+		var distance_check = 0;
+		var nearest_object = noone;
+		var i = 0;
+		repeat(array_length(check_near)){
+			if(check_near[i] != noone){
+				distance_check = point_distance(x,y,check_near[i].x,check_near[i].y);
+			}else{
+				distance_check = room_width*99;
+			}
+			if(distance_check <= object_distance){
+				nearest_object = check_near[i];	
+				object_distance = distance_check;
+			}
+			i++;
+		}
+		show_debug_message(string(nearest_object));
+		if(nearest_object != noone){
+			
+			var wall_gun_angle = point_direction(x,y,nearest_object.x,nearest_object.y);
+			var homing_angle = angle_difference(wall_gun_angle,direction);
+			var nearest_distance = point_distance(x,y,nearest_object.x,nearest_object.y);
+			direction += sign(homing_angle)*((5/(nearest_distance/10))+1);
+			image_angle = direction;
+		}
+		}
 		
+		break;
+		case 12:
+		var bullet_attraction = noone;
+		with(obj_player_gun) bullet_attraction = bullet_shot;
+		with(bullet_attraction){
+			hspeed += sign(obj_player.x-x)/5;
+			vspeed += sign(obj_player.y-y)/5;
+			image_angle = direction;
+		}
+		with(obj_coin){
+			hspeed += sign(obj_player.x-x)/3;
+		}
+		break;
+		case 13:
+		with(obj_player_gun){
+			if(fire_buttom) and (can_fire) and (visible){
+				var bullet_space = cannon_size/bullet_count;
+				var bullet_start = bullet_space/2;
+				var spread_angle = random_range(-spread,spread);
+				var mirror = image_angle+180;
+				repeat(bullet_count){
+				var barrel_dirx = lengthdir_x(cannon_size/2,mirror-90);
+				var barrel_diry = lengthdir_y(cannon_size/2,mirror-90);
+	
+				var bullet_dirx = lengthdir_x(bullet_start,mirror+90)+barrel_dirx;
+				var bullet_diry = lengthdir_y(bullet_start,mirror+90)+barrel_diry;
+	
+				var bullet = instance_create_layer(x+bullet_dirx,y+bullet_diry,"PlayerGun",bullet_shot);
+				bullet.direction = mirror+spread_angle;
+				bullet.image_yscale = image_yscale;
+				bullet.speed = bullet_speed;
+				bullet.hspeed += obj_player.hs_speed/2;
+				bullet.image_angle = bullet.direction;
+				bullet.damage = base_damage+global.player_damage;
+				bullet_start += bullet_space
+				}
+			}
+		}
+		break;
+		case 14:
+		with(obj_coin){
+			vspeed -= 0.25;
+		}
+		break;
+		case 19:
+		if(iframe){
+			global.regen = false;	
+		}
 		break;
 	}
 }
@@ -144,20 +255,40 @@ function OnStep(item_id) {
 function OnClock(item_id, clock_time) {
 		var timer = clock_time;
 	switch(item_id){
-		case 2:
-		if(timer > room_speed*2){
+		case 18:
+		if(timer > room_speed){
 			timer = 0;
-			var angle = 0;
-			var bullet_amount = 180;
-			repeat(bullet_amount){
-				var bullet = instance_create_layer(x,y,"Guns",obj_player_bullet);
-				bullet.image_angle = angle;
-				bullet.direction = angle;
-				bullet.speed = 2;
-				bullet.damage = 20;
-				angle += 360/bullet_amount;
+			with(obj_enemy_gun){
+			if(!get_out) and (!startup){
+			hit = 1;
+			turret_health -= global.player_damage+(turret_health/10)+1;
+			}
+			}
+			with(obj_enemy_gun_roof){
+			if(!get_out) and (!startup){
+			hit = 1;
+			turret_health -= global.player_damage+(turret_health/10)+1;
+			}
+			}
+			with(obj_ground_gun){
+			if(!get_out) and (!startup){
+			hit = 1;
+			turret_health -= global.player_damage+(turret_health/10)+1;
+			}
 			}
 		}
+		break;
+		case 19:
+			var wait_regen = room_speed/4;
+			if(!global.regen) wait_regen = room_speed*3;
+			if(timer > wait_regen){
+			timer = 0;
+			if(global.regen){
+				global.player_hp = clamp(global.player_hp+floor(global.player_max_hp/40),0,global.player_max_hp);
+			}else{
+			global.regen = true;	
+			}
+			}
 		break;
 	}
 	timer++;

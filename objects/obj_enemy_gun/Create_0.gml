@@ -13,6 +13,9 @@ default_cannon_x = x_startup_offset_cannon;
 mask_index = spr_gun_support;
 aim_target = 0;
 aim_current_direction = cannon_angle;
+killed = false;
+
+coin_amount = 1;
 
 get_out = false;
 

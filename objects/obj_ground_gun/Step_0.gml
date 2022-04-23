@@ -50,4 +50,5 @@ y_recoil = lerp(0,y_recoil,0.5);
 
 if(turret_health <= 0) and (!get_out){
 	get_out = true;
+	killed = true;
 }

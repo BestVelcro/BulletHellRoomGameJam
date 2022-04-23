@@ -55,6 +55,7 @@ if(can_shoot) and (!get_out) and (!startup) and (abs(aim_target_difference) <= g
 
 if(turret_health <= 0) and (!get_out){
 	get_out = true;
+	killed = true;
 }
 
 if(aim_current_direction > 90) and (aim_current_direction < 270) image_yscale = -1; else image_yscale = 1;

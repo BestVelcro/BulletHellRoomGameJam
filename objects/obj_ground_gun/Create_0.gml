@@ -7,6 +7,9 @@ gun_damage = 40;
 
 hit = 0;
 
+killed = false;
+coin_amount = 3;
+
 startup = true;
 
 get_out = false;

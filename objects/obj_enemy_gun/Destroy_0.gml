@@ -14,6 +14,12 @@ switch(gun_side){
 	}
 	break;
 }
+if(killed){
+	repeat(coin_amount*global.coin_multiplier){
+	var coin = instance_create_layer(x+(gun_side*10),y,"BottomParticles",obj_coin);	
+	coin.vspeed -= random(1);
+	}
+}
 
 with(obj_particle){
 	if(particle_owner == other.id){

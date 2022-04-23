@@ -1,7 +1,7 @@
 if(trap_type == "LANDMINE"){
 	
 	// Trigger explosion time
-	if(place_meeting(x,y,obj_player)) and (!trigger) and (y_offset <= 0){
+	if(place_meeting(x,y,obj_player)) and (!trigger) and (y_offset <= 0) and (global.traps){
 	trigger = true;
 	alarm[0] = room_speed/2;
 	image_index = 1;
@@ -36,12 +36,12 @@ ds_list_destroy(particle_instances);
 }
 
 if(trap_type == "SPIKE"){
-	if(place_meeting(x,y,obj_player)) and (y_offset <= 0){
+	if(place_meeting(x,y,obj_player)) and (y_offset <= 0) and (global.traps){
 		if(sprite_index == spr_spike) image_speed = 1;
-		if(sprite_index == spr_spike) and (image_index == image_number-1){
+		if(sprite_index == spr_spike) and (image_index == image_number-1) and (global.traps){
 			DamageTaken(trap_damage,false,false);
 		}
-		if(sprite_index == spr_spike_retract) and (image_index == 0){
+		if(sprite_index == spr_spike_retract) and (image_index == 0) and (global.traps){
 			DamageTaken(trap_damage,false,false);
 		}
 	}
@@ -51,7 +51,7 @@ if(trap_type == "SPIKE"){
 if(trap_type == "BLADE") and (instance_exists(spin_plataform)){
 	created = true;
 	image_angle += 20;
-	if(place_meeting(x,y,obj_player)) DamageTaken(trap_damage,false,2);
+	if(place_meeting(x,y,obj_player)) and (global.traps) DamageTaken(trap_damage,false,2);
 	var x_direction = lengthdir_x(speed,direction);
 	var y_direction = lengthdir_y(speed,direction);
 	if(x+x_direction > spin_plataform.x+spin_plataform.sprite_width/2) or (x+x_direction < spin_plataform.x-spin_plataform.sprite_width/2) or (y+y_direction > spin_plataform.y+spin_plataform.sprite_height/2) or (y+y_direction < spin_plataform.y-spin_plataform.sprite_height/2){

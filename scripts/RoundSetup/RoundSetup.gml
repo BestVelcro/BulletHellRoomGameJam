@@ -35,7 +35,7 @@ switch(current_round){
 		break;
 		case 3:
 		SetGunsSlotsLeft([spr_gun_weapon,spr_gun_weapon,spr_gun_weapon], 2, noone);
-		SetGunsSlotsRight([spr_gun_minigun, spr_gun_rpg, spr_gun_laser], 1, [45]);
+		SetGunsSlotsRight([spr_gun_minigun, spr_gun_rpg, spr_gun_laser], 1, [0]);
 		SummonTrap("BLADE", 0);
 		SummonTrap("SPIKE", random_width);
 		break;
@@ -45,7 +45,7 @@ switch(current_round){
 		break;
 		case 5:
 		SetGunsSlotsLeft([spr_gun_weapon,spr_gun_weapon,spr_gun_weapon], 2, noone);
-		SetGunsSlotsRight([spr_gun_minigun, spr_gun_rpg, spr_gun_laser], 1, [45]);
+		SetGunsSlotsRight([spr_gun_minigun, spr_gun_rpg, spr_gun_laser], 1, [310]);
 		SummonTrap("BLADE", 0);
 		SummonTrap("LANDMINE", random_width);
 		SummonTrap("SPIKE", random_width);

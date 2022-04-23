@@ -8,3 +8,6 @@ global.player_max_hp = global.player_hp;
 global.player_armor = 1;
 global.player_damage = 0;
 global.coins = 0;
+global.coin_multiplier = 1;
+global.traps = true;
+global.regen = true;

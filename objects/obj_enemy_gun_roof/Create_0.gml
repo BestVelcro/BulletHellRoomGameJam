@@ -20,6 +20,9 @@ aim_current_direction = cannon_angle;
 gun_damage = 15;
 get_out = false;
 
+killed = false;
+coin_amount = 4;
+
 can_shoot = true;
 
 cooldown = room_speed;

@@ -57,7 +57,7 @@ for(i = 0; i < max_length; i++){
 
     length_laser = i;
     
-    if(position_meeting(final_x,final_y, obj_wall)){
+    if(position_meeting(final_x,final_y, obj_wall)) or (position_meeting(final_x,final_y,obj_player_orbital)){
 		length_laser++;
        break;
     }
@@ -130,8 +130,9 @@ ds_list_destroy(particle_instances);
 
 }
 
-if(turret_health <= 0) and (!get_out){
+if(turret_health <= 0) and (!get_out) and (!startup){
 	get_out = true;
+	killed = true;
 }
 
 if(aim_current_direction > 90) and (aim_current_direction < 270) image_yscale = -1; else image_yscale = 1;

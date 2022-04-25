@@ -1,12 +1,18 @@
 horizontal_speed = keyboard_check(vk_right)-keyboard_check(vk_left);
 jump = keyboard_check_pressed(vk_space);
-var key_down = keyboard_check(vk_down);
+var key_down = keyboard_check_pressed(vk_down);
 var lock = keyboard_check(ord("C"));
 jump = jump*(!lock);
 
+if(!keyboard_check(vk_space)) and (vs_speed < 0){
+	grv = default_grv*2;
+}else{
+	grv = default_grv;	
+}
+
 if(key_down and !can_fall and !lock){
 	can_fall = true;
-	alarm[0] = room_speed/4;
+	alarm[0] = room_speed/8;
 }
 
 hs_speed = lerp(hs_speed, 0, deccel);
@@ -30,14 +36,33 @@ vs_speed += grv;
 
 //Vertical Collision
 
+if(horizontal_speed != 0) and (!audio_is_playing(metal_footstep_1)){
+	if(irandom(1)){
+	audio_sound_gain(metal_footstep_1,0.08,1);
+	audio_play_sound(metal_footstep_1,1,false);
+	}
+}
+if(horizontal_speed != 0) and (!audio_is_playing(metal_footstep_2)){
+	if(irandom(1)){
+	audio_sound_gain(metal_footstep_2,0.08,1);
+	audio_play_sound(metal_footstep_2,1,false);
+	}
+}
 
 on_floor = false;
 can_jump--;
 
+audio_sound_gain(jump_player,0.05,1);
+
 var onWall = collision_rectangle(bbox_left+1,bbox_bottom,bbox_right-1,bbox_bottom+1,obj_wall,false,false);
 if(onWall != noone){
 	vs_speed = jump*-jump_power;
-	if(!jump) can_jump = jump_buffer; else can_jump = 0;
+	if(!jump){
+		can_jump = jump_buffer;
+	}else{
+		can_jump = 0;
+		audio_play_sound(jump_player,1,false);	
+	}
 	on_floor = true;
 }
 
@@ -53,7 +78,12 @@ if(onPlataform != noone) and (!can_fall) and (vs_speed > 0){
 		}
 	}else{
 	vs_speed = jump*-jump_power;
-	if(!jump) can_jump = jump_buffer; else can_jump = 0;
+	if(!jump){
+		can_jump = jump_buffer;
+	}else{
+		can_jump = 0;
+		audio_play_sound(jump_player,1,false);	
+	}
 	on_floor = true;
 	}
 	}
@@ -64,6 +94,7 @@ if(can_jump > 0) and (!on_floor) and (jump){
 	can_jump = 0;
 	vs_speed = jump*-jump_power;
 	jump = -1;
+	audio_play_sound(jump_player,1,false);	
 }
 
 if(place_meeting(x,y+vs_speed,obj_wall)){
@@ -168,35 +199,6 @@ repeat(ds_list_size(particle_instances)){
 }
 
 ds_list_destroy(particle_instances);
-}
-
-////// Dealing with items
-
-var my_items_size = ds_list_size(my_items)-1;
-
-repeat(my_items_size+1){
-	var current_item_id = ds_list_find_value(my_items,my_items_size);
-	my_items_size--;
-	if(global.items_array[current_item_id][4]){
-		OnStep(current_item_id);
-	}
-	if(global.items_array[current_item_id][5]){
-		var ds_index = 0;
-		repeat(ds_list_size(clock_items)){
-			var clock_array = ds_list_find_value(clock_items,ds_index);
-			var clock_id = array_get(clock_array, 0);
-			var clock_time = array_get(clock_array, 1);
-			
-			if(clock_id == current_item_id){
-				var clock = OnClock(current_item_id, clock_time);
-				var item_clock = [current_item_id, clock];
-				ds_list_set(clock_items,ds_index,item_clock);
-				break;
-			}
-			
-			ds_index++;
-		}
-	}
 }
 
 

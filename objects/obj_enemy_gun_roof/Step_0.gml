@@ -11,13 +11,15 @@ if(!get_out) and (abs(aim_target_difference) > 1) and (aim_current_direction+ang
 	aim_current_direction += angle_move;
 }
 
-if(startup){
+if(startup) and (!get_out){
 y_startup_offset_support = lerp(0,y_startup_offset_support,0.9);
 y_startup_offset_cannon = lerp(0,y_startup_offset_cannon,0.9);
 aim_current_direction = cannon_angle;
 if(y_startup_offset_cannon <= 1) and (y_startup_offset_support <= 1){
 	startup = false;
 }
+}else{
+	startup = false;	
 }
 
 if(get_out) and (abs(angle_difference(cannon_angle,aim_current_direction)) > 4){

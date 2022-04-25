@@ -21,6 +21,9 @@ if(instance_exists(obj_player)){
 	visible = obj_player.visible;
 
 if(fire_buttom) and (can_fire) and (visible){
+	audio_sound_gain(sub_gunshot,0.1,1);
+	audio_play_sound(sub_gunshot,1,false);
+	fired = true;
 	var bullet_space = cannon_size/bullet_count;
 	var bullet_start = bullet_space/2;
 	var spread_angle = random_range(-spread,spread);

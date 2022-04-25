@@ -13,10 +13,10 @@ for(i = 0; i < max_length; i++){
 }
 
 
-
 if(instance_exists(obj_player)){
 	x = obj_player.x;
 	y = obj_player.y-(obj_player.sprite_height/2+obj_player.sprite_height/4);
+	if(!obj_player.visible) instance_destroy();
 }else{
 	instance_destroy();	
 }

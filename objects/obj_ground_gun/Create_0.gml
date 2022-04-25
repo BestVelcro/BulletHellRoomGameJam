@@ -3,7 +3,7 @@ y_default_offset = y_offset;
 sniper_yscale = 90;
 sniper_angle = 90;
 lock = true;
-gun_damage = 40;
+gun_damage = 30;
 
 hit = 0;
 
@@ -14,7 +14,8 @@ startup = true;
 
 get_out = false;
 
-can_shoot = true;
+can_shoot = false;
+alarm[0] = room_speed*2;
 
 descending = false;
 

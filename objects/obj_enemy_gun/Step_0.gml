@@ -8,13 +8,15 @@ aim_target = cannon_angle;
 }
 if(!get_out) and (abs(angle_difference(aim_target,aim_current_direction)) > 1) aim_current_direction += sign(angle_difference(aim_target,aim_current_direction))*cannon_speed;
 
-if(startup){
+if(startup) and (!get_out){
 x_startup_offset_support = lerp(0,x_startup_offset_support,0.9);
 x_startup_offset_cannon = lerp(0,x_startup_offset_cannon,0.9);
 aim_current_direction = cannon_angle;
 if(x_startup_offset_cannon <= 1) and (x_startup_offset_support <= 1){
 	startup = false;
 }
+}else{
+	startup = false	
 }
 
 if(get_out) and (abs(angle_difference(cannon_angle,aim_current_direction)) > 4){
@@ -29,6 +31,9 @@ if(x_startup_offset_cannon >= default_cannon_x) instance_destroy();
 }
 
 if(can_shoot) and (!get_out) and (!startup) and (abs(angle_difference(aim_target,aim_current_direction)) <= gun_precision) and (!laser_gun){
+	audio_sound_gain(audio_play,0.2,1);
+	audio_sound_pitch(audio_play,1+(random_range(-1,1)/8));
+	audio_play_sound(audio_play,1,false);
 	bullets_fired++;
 	image_index = 0;
 	image_speed = 1;
@@ -46,9 +51,11 @@ if(can_shoot) and (!get_out) and (!startup) and (abs(angle_difference(aim_target
 	if(bullets_fired >= bullet_limit){
 		get_out = true;
 	}
+}else{
+
 }
 
-if(laser_gun){
+if(laser_gun) and (!startup){
 var max_length = room_width*2;
 
 for(i = 0; i < max_length; i++){
@@ -62,7 +69,7 @@ for(i = 0; i < max_length; i++){
        break;
     }
 }
-if(abs(angle_difference(aim_target,aim_current_direction)) > gun_precision){
+if(abs(angle_difference(aim_target,aim_current_direction)) > 1){
 	length_laser = 0;
 }else{
 laser_startup = lerp(1,laser_startup,0.8);
@@ -87,7 +94,7 @@ with(obj_sensor){
 	var dir_y = 0;
 	var laser_length = 0;
 	repeat(image_xscale){
-		if(position_meeting(x+dir_x,y+dir_y,obj_player)){
+		if(position_meeting(x+dir_x,y+dir_y,obj_player)) and (!other.get_out){
 			DamageTaken(other.gun_damage,false,4);
 			repeat(5){
 				var particle = instance_create_layer(x+dir_x,y+dir_y,"TopParticles",obj_particle);
@@ -130,7 +137,9 @@ ds_list_destroy(particle_instances);
 
 }
 
-if(turret_health <= 0) and (!get_out) and (!startup){
+if(turret_health <= 0) and (!get_out) and (!startup) and (!killed){
+	audio_sound_gain(turrent_breaking_down,0.1,0);
+	audio_play_sound(turrent_breaking_down,1,false);
 	get_out = true;
 	killed = true;
 }

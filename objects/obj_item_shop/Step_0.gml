@@ -1,4 +1,5 @@
-if(keyboard_check_pressed(ord("Z"))) and (place_meeting(x,y,obj_player)){
+if(keyboard_check_pressed(ord("Z"))) and (place_meeting(x,y,obj_player)) and (global.coins >= global.items_array[random_item][6]){
+global.coins -= global.items_array[random_item][6];
 if(global.items_array[random_item][3]){
 	with(obj_player){
 	OnPickup(other.random_item);

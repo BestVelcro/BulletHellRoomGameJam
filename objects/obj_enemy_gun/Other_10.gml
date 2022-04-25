@@ -1,7 +1,8 @@
+visible = true;
 switch(choosen_gun){
 	case spr_gun_weapon:
 	cooldown = room_speed;
-	projectile_speed = 6;
+	projectile_speed = 5;
 	bullet_sprite = spr_bullet_pistol;
 	gun_damage = 10;
 	turret_health = 60;
@@ -16,8 +17,9 @@ switch(choosen_gun){
 	bullet_sprite = spr_bullet_small;
 	bullet_limit = 80;
 	gun_damage = 5;
-	turret_health = 80;
+	turret_health = 60;
 	coin_amount = 3;
+	audio_play = sub_gunshot;
 	break;
 	case spr_gun_rpg:
 	cooldown = room_speed*4;
@@ -25,10 +27,10 @@ switch(choosen_gun){
 	cannon_speed = 0.3;
 	bullet_sprite = spr_bullet_rpg;
 	can_home = false;
-	bullet_limit = 3;
-	gun_precision = 30;
-	gun_damage = 60;
-	turret_health = 140;
+	bullet_limit = 6;
+	gun_precision = 10;
+	gun_damage = 70;
+	turret_health = 200;
 	coin_amount = 5;
 	break;
 	case spr_gun_laser:
@@ -41,9 +43,17 @@ switch(choosen_gun){
 	gun_precision = 5;
 	bullet_sprite = spr_bullet_sniper;
 	laser_gun = true;
-	gun_damage = 25;
+	gun_damage = 15;
 	turret_health = 100;
 	coin_amount = 2;
+	break;
+	case spr_nothing:
+	visible = false;
+	gun_damage = 0;
+	turret_health = 99*99*99;
+	cooldown = room_speed*99*99;
+	can_shoot = false;
+	mask_index = spr_nothing;
 	break;
 }
 	laseroffset_x = sprite_get_xoffset(choosen_gun);
@@ -56,4 +66,11 @@ if(!gun_side){
   laser_endpoint = cannon_angle+(360-laser_endpoint);
   }
 }
+
+health_multiplier = 1+(global.current_round*0.2)-0.2;
+damage_multiplier = 1+(global.current_round*0.1)-0.1;
+
+turret_health = floor(turret_health * health_multiplier);
+gun_damage = gun_damage*damage_multiplier;
+
 

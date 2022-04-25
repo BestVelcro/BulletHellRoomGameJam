@@ -1,10 +1,6 @@
 if(!stop) vspeed += 0.2;
 
 if(place_meeting(x,y+vspeed,obj_wall)) and (!stop){
-	y = round(y);
-	while(!place_meeting(x,y+sign(vspeed),obj_wall)){
-		y += sign(vspeed);
-	}
 	vspeed = (vspeed*-1)/1.5;
 	hspeed = hspeed/1.25
 	if(abs(vspeed) < 1){
@@ -13,7 +9,7 @@ if(place_meeting(x,y+vspeed,obj_wall)) and (!stop){
 		alarm[0] = room_speed/2;
 	}
 	if(abs(hspeed) < 0.4) hspeed = 0;
-	y += sign(vspeed);
+	//y += sign(room_height/2-x)*2;
 }
 if(place_meeting(x+hspeed,y,obj_wall)) and (!stop){
 	x = round(x);

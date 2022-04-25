@@ -16,3 +16,8 @@ lock_y = y;
 y_offset = sprite_get_height(spr_wall)+irandom(10);
 
 blade_size = 0;
+
+get_out = false;
+
+up_to = false;
+trap_set = false;

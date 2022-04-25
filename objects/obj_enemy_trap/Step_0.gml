@@ -1,7 +1,7 @@
 if(trap_type == "LANDMINE"){
 	
 	// Trigger explosion time
-	if(place_meeting(x,y,obj_player)) and (!trigger) and (y_offset <= 0) and (global.traps){
+	if(place_meeting(x,y,obj_player)) and (!trigger) and (up_to) and (global.traps) and (!get_out){
 	trigger = true;
 	alarm[0] = room_speed/2;
 	image_index = 1;
@@ -36,7 +36,7 @@ ds_list_destroy(particle_instances);
 }
 
 if(trap_type == "SPIKE"){
-	if(place_meeting(x,y,obj_player)) and (y_offset <= 0) and (global.traps){
+	if(place_meeting(x,y,obj_player)) and (up_to) and (global.traps) and (!get_out){
 		if(sprite_index == spr_spike) image_speed = 1;
 		if(sprite_index == spr_spike) and (image_index == image_number-1) and (global.traps){
 			DamageTaken(trap_damage,false,false);
@@ -51,7 +51,7 @@ if(trap_type == "SPIKE"){
 if(trap_type == "BLADE") and (instance_exists(spin_plataform)){
 	created = true;
 	image_angle += 20;
-	if(place_meeting(x,y,obj_player)) and (global.traps) DamageTaken(trap_damage,false,2);
+	if(place_meeting(x,y,obj_player)) and (!get_out) and (global.traps) DamageTaken(trap_damage,false,2);
 	var x_direction = lengthdir_x(speed,direction);
 	var y_direction = lengthdir_y(speed,direction);
 	if(x+x_direction > spin_plataform.x+spin_plataform.sprite_width/2) or (x+x_direction < spin_plataform.x-spin_plataform.sprite_width/2) or (y+y_direction > spin_plataform.y+spin_plataform.sprite_height/2) or (y+y_direction < spin_plataform.y-spin_plataform.sprite_height/2){
@@ -59,9 +59,13 @@ if(trap_type == "BLADE") and (instance_exists(spin_plataform)){
 	}
 	
 	// Blade Enter and Leave Animation
+	audio_sound_gain(spinning_razors,clamp(blade_size/8,0,0.2),1);
 	if(spin_plataform.sprite_index == spr_plataform_close){
 	blade_size = clamp(blade_size-0.05,0,1);
-	if(blade_size <= 0) instance_destroy();	
+	if(blade_size <= 0){
+		instance_destroy();	
+		audio_stop_sound(spinning_razors);
+	}
 	}else{
 	blade_size = clamp(blade_size+0.05,0,1);
 	}
@@ -69,9 +73,15 @@ if(trap_type == "BLADE") and (instance_exists(spin_plataform)){
 	image_yscale = blade_size;
 	
 }else if(created){
+	audio_stop_sound(spinning_razors);
 	instance_destroy();	
 }else{
 x = lock_x;
 y = lock_y+y_offset;
-y_offset = clamp(y_offset - 1,0,y_offset);
+if(!get_out) y_offset = clamp(y_offset - 1,0,y_offset); else y_offset++;
+if(get_out) and (y_offset > sprite_get_height(spr_wall)) instance_destroy();
+if(y_offset <= 0) and (!trap_set){
+	trap_set = true;
+	alarm[2] = room_speed;	
+}
 }

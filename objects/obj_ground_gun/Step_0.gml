@@ -4,7 +4,7 @@ if(sniper_angle > 90) and (sniper_angle < 270) sniper_yscale = -1; else sniper_y
 
 if(instance_exists(obj_player)) player_direction = point_direction(x,y-sprite_height,obj_player.x,obj_player.y);
 
-if(!lock) and (abs(angle_difference(player_direction,sniper_angle)) > 1) and (!get_out) sniper_angle += sign(angle_difference(player_direction,sniper_angle))*2;
+if(!lock) and (abs(angle_difference(player_direction,sniper_angle)) > 1) and (!get_out) sniper_angle += sign(angle_difference(player_direction,sniper_angle));
 
 if(!get_out) and (startup){
 	y_offset = clamp(y_offset - 1,0,y_default_offset);
@@ -12,6 +12,8 @@ if(!get_out) and (startup){
 	startup = false;
 	y_offset = 0;
 	}
+}else{
+	startup = false;	
 }
 
 if(y_offset <= 1) lock = false;
@@ -38,7 +40,7 @@ if(can_shoot) and (!get_out) and (abs(angle_difference(player_direction,sniper_a
 	var bullet = instance_create_layer(x,y+y_offset-sprite_width,"PlayerGun",obj_enemy_bullet);
 	bullet.sprite_index = spr_bullet_sniper;
 	bullet.direction = sniper_angle;
-	bullet.speed = 15;
+	bullet.speed = 8;
 	bullet.image_angle = sniper_angle;
 	bullet.bullet_damage = gun_damage;
 	x_recoil = lengthdir_x(14,sniper_angle+180);

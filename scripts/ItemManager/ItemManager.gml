@@ -1,26 +1,31 @@
 	global.items_array = [
 	// ["Item_Name", "Description", spr_id, Boolean (Script on Pickup), Boolean (Script on Step Event), Boolean (Clock Event), Price
 	// 7 Values + index position
-	["The Big Knight", "More Armor", spr_big_knight, true, false, false, 50, 0],
+	["The Big Knight", "More Armor", spr_big_knight, true, false, false, 65, 0],
 	["Boots", "Go quickly", spr_boots, true, false, false , 30, 1],
-	["Broken Shield", "Damage and Armor", spr_broken_shield, true, false, false, 15, 2],
-	["Bullet Rain", "More fire Rate", spr_bullet_rain, true, false, false, 15, 3],
-	["Infibeam", "Constant Spinning Beam", spr_continuous_beam, true, false, false, 15, 4],
-	["Fuzil", "High Fire Rate High Speed", spr_damage_speed, true, false, false, 15, 5],
-	["Dash", "Double tap to Dash", spr_dash, false, true, false, 15, 6],
-	["Big Heart", "Double Health", spr_double_health, true, false, false, 15, 7],
-	["Sky Highs", "Double Jump", spr_double_jump, false, true, false, 15, 8],
-	["Grenade Launcher", "Kaboom!", spr_grenade, true, false, false, 15, 9],
-	["Psychic", "Homing Shots", spr_homing, true, true, false, 15, 10],
-	["Lucky Coins", "More Coins!", spr_lucky_coins, true, false, false, 15, 11],
-	["Magnet", "Very Attractive", spr_magnet, false, true, false, 15, 12],
-	["Mirror", "Backwards Shot", spr_mirror_shot, true, true, false, 15, 13],
-	["Bank Loan", "Money Flies!", spr_money_flies, true, true, false, 15, 14],
-	["Multibarrel", "More Bullets", spr_more_bullets, true, false, false, 15, 15],
-	["Light Steps", "No more Traps!", spr_non_trap, true, false, false, 15, 16],
-	["Holy Bubble", "Protection", spr_protection, true, false, false, 15, 17],
-	["Corrosion", "Kill from the inside", spr_radiation, false, false, true, 15, 18],
-	["Warm Heart", "Heal the Wounds", spr_regeneration, false, true, true, 15, 19]
+	["Broken Shield", "Damage and Armor", spr_broken_shield, true, false, false, 50, 2],
+	["Bullet Rain", "More fire Rate", spr_bullet_rain, true, false, false, 50, 3],
+	["Infibeam", "Constant Spinning Beam", spr_continuous_beam, true, false, false, 40, 4],
+	["Fuzil", "High Fire Rate High Speed", spr_damage_speed, true, false, false, 45, 5],
+	["Dash", "Double tap to Dash", spr_dash, false, true, false, 65, 6],
+	["Big Heart", "Double Health", spr_double_health, true, false, false, 70, 7],
+	["Sky Highs", "Double Jump", spr_double_jump, false, true, false, 35, 8],
+	["Grenade Launcher", "Kaboom!", spr_grenade, true, false, false, 100, 9],
+	["Psychic", "Homing Shots", spr_homing, true, true, false, 75, 10],
+	["Lucky Coins", "More Coins!", spr_lucky_coins, true, false, false, 60, 11],
+	["Magnet", "Very Attractive", spr_magnet, false, true, false, 50, 12],
+	["Mirror", "Backwards Shot", spr_mirror_shot, true, true, false, 65, 13],
+	["Bank Loan", "Money Flies!", spr_money_flies, true, true, false, 30, 14],
+	["Multibarrel", "More Bullets", spr_more_bullets, true, false, false, 55, 15],
+	["Light Steps", "No more Traps!", spr_non_trap, true, false, false, 70, 16],
+	["Holy Bubble", "Protection", spr_protection, true, false, false, 40, 17],
+	["Corrosion", "Kill from the inside", spr_radiation, false, false, true, 70, 18],
+	["Warm Heart", "Heal the Wounds", spr_regeneration, false, true, true, 50, 19],
+	["Mr.Robot", "Your very own Friend", spr_robot, true, false, false, 50, 20],
+	["Steady Aim", "High Damage Low Fire Rate", spr_sniper_damage, true, false, false, 45, 21],
+	["Sword", "Down to the old way", spr_sword, true, false, false, 50, 22],
+	["Curse", "High Risk High Reward", spr_triple_damage, true, false, false, 25, 23],
+	["Turtle Shield", "Back Friendly", spr_turtle_shield, true, false, false, 60, 24]
 	]
 	
 
@@ -28,7 +33,7 @@
 function OnPickup(item_id) {
 	switch(item_id){
 		case 0:
-		global.player_armor -= global.player_armor/2;
+		global.player_armor -= global.player_armor/4;
 		break;
 		case 1:
 		hs_max_speed += floor(hs_max_speed/2);
@@ -39,7 +44,7 @@ function OnPickup(item_id) {
 		}else{
 		global.player_damage += 5;	
 		}
-		global.player_armor -= global.player_armor/4;
+		global.player_armor -= global.player_armor/8;
 		break;
 		case 3:
 		with(obj_player_gun) fire_rate -= floor(default_fire_rate/2);
@@ -55,7 +60,7 @@ function OnPickup(item_id) {
 		}
 		break;
 		case 7:
-		global.player_max_hp += global.player_max_hp;
+		global.player_max_hp += global.player_max_hp/2;
 		global.player_hp = global.player_max_hp;
 		break;
 		case 9:
@@ -98,6 +103,40 @@ function OnPickup(item_id) {
 		break;
 		case 17:
 		instance_create_layer(x,y,"Cenario",obj_player_orbital);
+		break;
+		case 20:
+		instance_create_layer(x,y,"BottomParticles",obj_robot);
+		break;
+		case 21:
+		with(obj_player_gun){
+			bullet_speed += default_bullet_speed*2;
+			global.player_damage += base_damage+20;
+			fire_rate += default_fire_rate*2.5;
+		}
+		break;
+		case 22:
+		with(obj_player_gun){
+			var new_default_fire_rate = room_speed/12;
+			sprite_index = spr_sword_weapon;
+			bullet_shot = obj_sword_swing;
+			
+			fire_rate = new_default_fire_rate/(default_fire_rate/fire_rate);
+			default_fire_rate = new_default_fire_rate;
+			
+			base_damage = 25;
+			
+			global.player_damage += 5;
+		}
+		break;
+		case 23:
+		with(obj_player_gun){
+			global.player_damage += (base_damage*2)+5;
+		}
+		global.player_max_hp = global.player_max_hp/2;
+		global.player_hp = global.player_max_hp;
+		break;
+		case 24:
+		instance_create_layer(x,y,"Player",obj_turtle_shield);
 		break;
 	}
 }
@@ -189,14 +228,15 @@ function OnStep(item_id) {
 			}
 			i++;
 		}
-		show_debug_message(string(nearest_object));
+		
 		if(nearest_object != noone){
-			
+			if(nearest_object.visible){
 			var wall_gun_angle = point_direction(x,y,nearest_object.x,nearest_object.y);
 			var homing_angle = angle_difference(wall_gun_angle,direction);
 			var nearest_distance = point_distance(x,y,nearest_object.x,nearest_object.y);
 			direction += sign(homing_angle)*((5/(nearest_distance/10))+1);
 			image_angle = direction;
+			}
 		}
 		}
 		
@@ -215,7 +255,8 @@ function OnStep(item_id) {
 		break;
 		case 13:
 		with(obj_player_gun){
-			if(fire_buttom) and (can_fire) and (visible){
+			if(fired){
+				fired = false;
 				var bullet_space = cannon_size/bullet_count;
 				var bullet_start = bullet_space/2;
 				var spread_angle = random_range(-spread,spread);
@@ -259,7 +300,7 @@ function OnClock(item_id, clock_time) {
 		if(timer > room_speed){
 			timer = 0;
 			with(obj_enemy_gun){
-			if(!get_out) and (!startup){
+			if(!get_out) and (!startup) and (visible){
 			hit = 1;
 			turret_health -= global.player_damage+(turret_health/10)+1;
 			}

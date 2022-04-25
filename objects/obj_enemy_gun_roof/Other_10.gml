@@ -1,7 +1,8 @@
 switch(choosen_gun){
 	case spr_gun_weapon:
+	gun_damage = 5;
 	cooldown = room_speed;
-	projectile_speed = 6;
+	projectile_speed = 3;
 	bullet_sprite = spr_bullet_pistol;
 	break;
 	case spr_gun_minigun:
@@ -22,26 +23,5 @@ switch(choosen_gun){
 	bullet_limit = 3;
 	gun_precision = 30;
 	break;
-	case spr_gun_laser:
-	laser = true;
-	laser_x = 20;
-	laser_y = 1;
-	cooldown = 1;
-	projectile_speed = 6;
-	cannon_speed = 1;
-	gun_precision = 5;
-	bullet_sprite = spr_bullet_sniper;
-	laser_gun = true;
-	break;
 }
-	laseroffset_x = sprite_get_xoffset(choosen_gun);
-	laseroffset_y = sprite_get_yoffset(choosen_gun);
-
-if(!gun_side){
-  if(laser_endpoint <= 180){
-  laser_endpoint = cannon_angle-laser_endpoint;
-  }else{
-  laser_endpoint = cannon_angle+(360-laser_endpoint);
-  }
-}
-
+show_debug_message("a");

@@ -21,7 +21,7 @@ if(view_height & 1) view_height++;
 
 
 max_window_scale = min(floor(display_get_width()/view_width),floor(display_get_height()/view_height));
-
+global.scale = max_window_scale;
 if(view_height * max_window_scale == display_get_height())
 
     max_window_scale--;
@@ -39,4 +39,4 @@ alarm[0]=1;
 
 surface_resize(application_surface,view_width*window_scale,view_height*window_scale);
 
-
+global.music_time = 0;

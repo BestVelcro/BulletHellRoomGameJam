@@ -6,6 +6,7 @@ vs_speed = 0;
 accel = 0.3;
 deccel = 0.2;
 grv = 0.5;
+default_grv = grv;
 jump_power = 8;
 can_fall = false;
 

@@ -14,3 +14,4 @@ spread = 0;
 fire_buttom = 0;
 
 bullet_count = 1;
+fired = false;

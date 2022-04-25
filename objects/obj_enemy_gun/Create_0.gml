@@ -15,11 +15,21 @@ aim_target = 0;
 aim_current_direction = cannon_angle;
 killed = false;
 
+audio_play = gunshot_2;
+
+visible = false;
+
+flash = 0;
+
 coin_amount = 1;
+
+health_multiplier = 1;
+damage_multiplier = 1;
 
 get_out = false;
 
-can_shoot = true;
+can_shoot = false;
+alarm[0] = (room_speed/2)+random(room_speed);
 
 cooldown = room_speed;
 projectile_speed = 10;

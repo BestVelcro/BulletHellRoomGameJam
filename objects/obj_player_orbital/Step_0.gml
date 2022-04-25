@@ -7,3 +7,5 @@ y = lock_target.y+dir_y
 
 direction++;
 }
+
+hit = clamp(hit-0.2,0,1);

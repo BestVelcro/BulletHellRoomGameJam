@@ -5,6 +5,3 @@ alpha += 0.05;
 visible = true;
 alpha += 0.05;
 }
-if(visible){
-audio_sound_gain(global.music_id,0,room_speed);	
-}

@@ -59,12 +59,10 @@ if(trap_type == "BLADE") and (instance_exists(spin_plataform)){
 	}
 	
 	// Blade Enter and Leave Animation
-	audio_sound_gain(spinning_razors,clamp(blade_size/8,0,0.2),1);
 	if(spin_plataform.sprite_index == spr_plataform_close){
 	blade_size = clamp(blade_size-0.05,0,1);
 	if(blade_size <= 0){
 		instance_destroy();	
-		audio_stop_sound(spinning_razors);
 	}
 	}else{
 	blade_size = clamp(blade_size+0.05,0,1);
@@ -73,7 +71,6 @@ if(trap_type == "BLADE") and (instance_exists(spin_plataform)){
 	image_yscale = blade_size;
 	
 }else if(created){
-	audio_stop_sound(spinning_razors);
 	instance_destroy();	
 }else{
 x = lock_x;

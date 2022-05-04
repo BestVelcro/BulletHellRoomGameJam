@@ -5,7 +5,7 @@ switch(choosen_gun){
 	projectile_speed = 5;
 	bullet_sprite = spr_bullet_pistol;
 	gun_damage = 10;
-	turret_health = 60;
+	turret_health = 70;
 	coin_amount = 2;
 	break;
 	case spr_gun_minigun:
@@ -17,9 +17,8 @@ switch(choosen_gun){
 	bullet_sprite = spr_bullet_small;
 	bullet_limit = 80;
 	gun_damage = 5;
-	turret_health = 60;
+	turret_health = 75;
 	coin_amount = 3;
-	audio_play = sub_gunshot;
 	break;
 	case spr_gun_rpg:
 	cooldown = room_speed*4;
@@ -30,10 +29,11 @@ switch(choosen_gun){
 	bullet_limit = 6;
 	gun_precision = 10;
 	gun_damage = 70;
-	turret_health = 200;
+	turret_health = 160;
 	coin_amount = 5;
 	break;
 	case spr_gun_laser:
+	gun_lerp = 0.92;
 	laser = true;
 	laser_x = 20;
 	laser_y = 1;
@@ -43,9 +43,9 @@ switch(choosen_gun){
 	gun_precision = 5;
 	bullet_sprite = spr_bullet_sniper;
 	laser_gun = true;
-	gun_damage = 15;
-	turret_health = 100;
-	coin_amount = 2;
+	gun_damage = 4;
+	turret_health = 140;
+	coin_amount = 3;
 	break;
 	case spr_nothing:
 	visible = false;

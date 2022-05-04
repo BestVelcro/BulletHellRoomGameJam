@@ -17,7 +17,7 @@ switch(gun_side){
 if(killed){
 	repeat(coin_amount*global.coin_multiplier){
 	var coin = instance_create_layer(x+(gun_side*10),y,"BottomParticles",obj_coin);	
-	coin.vspeed -= random(1);
+	coin.v_speed -= random(1);
 	}
 }
 

@@ -8,7 +8,6 @@ switch(trap_type){
 	trap_damage = 20
 	break;
 	case "BLADE":
-	audio_play_sound(spinning_razors,1,true);
 	sprite_index = spr_blade;
 	trap_damage = 5;
 	var ds_plataform = ds_list_create();

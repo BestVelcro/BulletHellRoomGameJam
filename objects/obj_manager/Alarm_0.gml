@@ -52,11 +52,13 @@ switch(global.current_state){
 		array_delete(global.items_on_play,choosen_item,1);
 		item_x += item_space;
 	}
+	
+	///////
+	
 	}else{
 	global.current_state = "FINAL";	
 	global.challenges = [1,2,3,4,5,6];
 	}
-	//////
 	}
 	global.time = room_speed;
 	break;

@@ -15,7 +15,7 @@ aim_target = 0;
 aim_current_direction = cannon_angle;
 killed = false;
 
-audio_play = gunshot_2;
+gun_lerp = 0.9;
 
 visible = false;
 

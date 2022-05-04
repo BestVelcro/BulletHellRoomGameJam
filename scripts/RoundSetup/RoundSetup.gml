@@ -36,7 +36,7 @@ switch(current_round){
 	case 1:
 	switch(choosen_challenge){
 		case 1:
-		SetGunsSlotsLeft([spr_gun_weapon, spr_nothing, spr_gun_minigun], 3, noone);
+		SetGunsSlotsLeft([spr_gun_weapon, spr_nothing, spr_nothing], 3, noone);
 		SetGunsSlotsRight([spr_gun_weapon,spr_gun_laser,spr_nothing], 3, [0]);
 		break;
 		case 2:

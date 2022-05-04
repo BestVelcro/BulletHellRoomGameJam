@@ -10,7 +10,7 @@
 	["Dash", "Double tap to Dash", spr_dash, false, true, false, 65, 6],
 	["Big Heart", "Double Health", spr_double_health, true, false, false, 70, 7],
 	["Sky Highs", "Double Jump", spr_double_jump, false, true, false, 35, 8],
-	["Grenade Launcher", "Kaboom!", spr_grenade, true, false, false, 100, 9],
+	["Grenade Launcher", "Kaboom!", spr_grenade, true, false, false, 90, 9],
 	["Psychic", "Homing Shots", spr_homing, true, true, false, 75, 10],
 	["Lucky Coins", "More Coins!", spr_lucky_coins, true, false, false, 60, 11],
 	["Magnet", "Very Attractive", spr_magnet, false, true, false, 50, 12],
@@ -23,7 +23,7 @@
 	["Warm Heart", "Heal the Wounds", spr_regeneration, false, true, true, 50, 19],
 	["Mr.Robot", "Your very own Friend", spr_robot, true, false, false, 50, 20],
 	["Steady Aim", "High Damage Low Fire Rate", spr_sniper_damage, true, false, false, 45, 21],
-	["Sword", "Down to the old way", spr_sword, true, false, false, 50, 22],
+	["Sword", "Down to the old way", spr_sword, true, false, false, 70, 22],
 	["Curse", "High Risk High Reward", spr_triple_damage, true, false, false, 25, 23],
 	["Turtle Shield", "Back Friendly", spr_turtle_shield, true, false, false, 60, 24]
 	]
@@ -132,8 +132,9 @@ function OnPickup(item_id) {
 		with(obj_player_gun){
 			global.player_damage += (base_damage*2)+5;
 		}
-		global.player_max_hp = global.player_max_hp/2;
+		global.player_max_hp = (global.player_max_hp/2)+(global.player_max_hp/4);
 		global.player_hp = global.player_max_hp;
+		global.player_armor = global.player_armor*1.5;
 		break;
 		case 24:
 		instance_create_layer(x,y,"Player",obj_turtle_shield);
@@ -234,7 +235,7 @@ function OnStep(item_id) {
 			var wall_gun_angle = point_direction(x,y,nearest_object.x,nearest_object.y);
 			var homing_angle = angle_difference(wall_gun_angle,direction);
 			var nearest_distance = point_distance(x,y,nearest_object.x,nearest_object.y);
-			direction += sign(homing_angle)*((5/(nearest_distance/10))+1);
+			direction += sign(homing_angle)*((5/(nearest_distance/5))+1);
 			image_angle = direction;
 			}
 		}
@@ -250,7 +251,7 @@ function OnStep(item_id) {
 			image_angle = direction;
 		}
 		with(obj_coin){
-			hspeed += sign(obj_player.x-x)/3;
+			h_speed += sign(obj_player.x-x);
 		}
 		break;
 		case 13:
@@ -282,7 +283,7 @@ function OnStep(item_id) {
 		break;
 		case 14:
 		with(obj_coin){
-			vspeed -= 0.25;
+			v_speed -= 0.25;
 		}
 		break;
 		case 19:

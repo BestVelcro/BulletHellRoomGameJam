@@ -36,23 +36,8 @@ vs_speed += grv;
 
 //Vertical Collision
 
-if(horizontal_speed != 0) and (!audio_is_playing(metal_footstep_1)){
-	if(irandom(1)){
-	audio_sound_gain(metal_footstep_1,0.08,1);
-	audio_play_sound(metal_footstep_1,1,false);
-	}
-}
-if(horizontal_speed != 0) and (!audio_is_playing(metal_footstep_2)){
-	if(irandom(1)){
-	audio_sound_gain(metal_footstep_2,0.08,1);
-	audio_play_sound(metal_footstep_2,1,false);
-	}
-}
-
 on_floor = false;
 can_jump--;
-
-audio_sound_gain(jump_player,0.05,1);
 
 var onWall = collision_rectangle(bbox_left+1,bbox_bottom,bbox_right-1,bbox_bottom+1,obj_wall,false,false);
 if(onWall != noone){
@@ -61,7 +46,6 @@ if(onWall != noone){
 		can_jump = jump_buffer;
 	}else{
 		can_jump = 0;
-		audio_play_sound(jump_player,1,false);	
 	}
 	on_floor = true;
 }
@@ -82,7 +66,6 @@ if(onPlataform != noone) and (!can_fall) and (vs_speed > 0){
 		can_jump = jump_buffer;
 	}else{
 		can_jump = 0;
-		audio_play_sound(jump_player,1,false);	
 	}
 	on_floor = true;
 	}
@@ -94,7 +77,6 @@ if(can_jump > 0) and (!on_floor) and (jump){
 	can_jump = 0;
 	vs_speed = jump*-jump_power;
 	jump = -1;
-	audio_play_sound(jump_player,1,false);	
 }
 
 if(place_meeting(x,y+vs_speed,obj_wall)){

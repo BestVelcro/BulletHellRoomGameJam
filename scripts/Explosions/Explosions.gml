@@ -4,7 +4,7 @@ function StartExplosion(explosion_x, explosion_y, object_to_check, range_check, 
 	repeat(30){
 		explosion_offset_x = random_range(-sprite_width,sprite_width);
 		explosion_offset_y = random_range(-sprite_width,sprite_width);
-		var particle = instance_create_layer(x+explosion_offset_x,y+explosion_offset_y,choose("BottomParticles","TopParticles"),obj_particle);
+		var particle = instance_create_layer(explosion_x+explosion_offset_x,explosion_y+explosion_offset_y,choose("BottomParticles","TopParticles"),obj_particle);
 		particle.direction = irandom(360);
 		particle.speed = 5;
 		particle.sprite_index = spr_landmine_hitbox;

@@ -9,3 +9,5 @@ gun_freeze = true;
 
 can_shoot = true;
 hit = 0;
+
+enemy_array = [obj_enemy_gun, obj_enemy_gun_roof, obj_ground_gun];
